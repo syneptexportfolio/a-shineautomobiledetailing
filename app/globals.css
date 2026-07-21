@@ -4,7 +4,7 @@
    ============================================ */
 
 /* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Fonts are loaded via next/font/google in layout.tsx — no @import needed */
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
@@ -59,7 +59,7 @@
   /* Colors — Text */
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
+  --color-text-muted: #64748b;
   --color-text-accent: #E31B23;
   --color-text-inverse: #ffffff;
 

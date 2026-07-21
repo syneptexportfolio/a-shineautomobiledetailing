@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Menu, X, Sparkles, Star, Calendar, ChevronLeft, ChevronRight,
   MapPin, Phone, Mail, Clock, ArrowRight, Shield, Check, MessageSquare
@@ -201,6 +202,7 @@ export default function LandingPage() {
               className="nav__mobile-toggle"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               style={{ padding: '0.25rem', color: 'var(--color-text-primary)' }}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {isMobileMenuOpen ? <X /> : <Menu />}
             </button>
@@ -322,14 +324,22 @@ export default function LandingPage() {
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%', minHeight: '400px' }} className="hero-right-col">
             {/* Porsche Image Container */}
             <div style={{ width: '160%', marginLeft: '-45%', marginTop: '-135px', marginBottom: '-75px', zIndex: 1, position: 'relative', overflow: 'hidden' }}>
-              <motion.img
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                src="/porsche-hero.png"
-                alt="Pristine White Porsche 911"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
+                style={{ width: '100%', position: 'relative' }}
+              >
+                <Image
+                  src="/porsche-hero.png"
+                  alt="Pristine White Porsche 911"
+                  width={1024}
+                  height={572}
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  preload
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </motion.div>
               {/* Edge Blending Gradients to blend borders with white background */}
               <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '32%', background: 'linear-gradient(to right, #ffffff, transparent)', zIndex: 3 }} />
               <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '10%', background: 'linear-gradient(to left, #ffffff, transparent)', zIndex: 3 }} />
@@ -431,10 +441,12 @@ export default function LandingPage() {
               >
                 {/* Image top */}
                 <div className="service-card-img-wrap" style={{ width: '100%', height: '240px', position: 'relative', overflow: 'hidden', background: '#0a0d14' }}>
-                  <img
+                  <Image
                     src={srv.img}
                     alt={srv.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: srv.pos, display: 'block' }}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 384px"
+                    style={{ objectFit: 'cover', objectPosition: srv.pos }}
                     className="transition-transform duration-500 hover:scale-105"
                   />
                 </div>
@@ -469,12 +481,16 @@ export default function LandingPage() {
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative', width: '100%', maxWidth: '480px' }}>
               {/* Main image */}
-              <img
-                src="/service-ai-interior.png"
-                alt="Professional AI generated interior car detailing"
-                className="rounded-2xl shadow-xl"
-                style={{ width: '100%', height: '420px', objectFit: 'cover', borderRadius: '16px' }}
-              />
+              <div style={{ position: 'relative', width: '100%', height: '420px' }}>
+                <Image
+                  src="/service-ai-interior.png"
+                  alt="Professional AI generated interior car detailing"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 480px"
+                  className="rounded-2xl shadow-xl"
+                  style={{ objectFit: 'cover', borderRadius: '16px' }}
+                />
+              </div>
 
               {/* Floating Badge */}
               <div
@@ -582,11 +598,13 @@ export default function LandingPage() {
                   flexDirection: 'column',
                 }}
               >
-                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
-                  <img
+                <div className="gallery-card-img" style={{ position: 'relative', overflow: 'hidden', background: '#111' }}>
+                  <Image
                     src={item.src}
                     alt={item.label}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    fill
+                    sizes="(max-width: 768px) 250px, 330px"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
                 <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
@@ -619,11 +637,13 @@ export default function LandingPage() {
                   flexDirection: 'column',
                 }}
               >
-                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
-                  <img
+                <div className="gallery-card-img" style={{ position: 'relative', overflow: 'hidden', background: '#111' }}>
+                  <Image
                     src={item.src}
                     alt={item.label}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    fill
+                    sizes="(max-width: 768px) 250px, 330px"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
                 <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
@@ -662,11 +682,13 @@ export default function LandingPage() {
                   flexDirection: 'column',
                 }}
               >
-                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
-                  <img
+                <div className="gallery-card-img" style={{ position: 'relative', overflow: 'hidden', background: '#111' }}>
+                  <Image
                     src={item.src}
                     alt={item.label}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    fill
+                    sizes="(max-width: 768px) 250px, 330px"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
                 <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
@@ -699,11 +721,13 @@ export default function LandingPage() {
                   flexDirection: 'column',
                 }}
               >
-                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
-                  <img
+                <div className="gallery-card-img" style={{ position: 'relative', overflow: 'hidden', background: '#111' }}>
+                  <Image
                     src={item.src}
                     alt={item.label}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    fill
+                    sizes="(max-width: 768px) 250px, 330px"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
                 <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
@@ -965,8 +989,11 @@ export default function LandingPage() {
                   <button
                     key={dotIdx}
                     onClick={() => setActivePriceIdx(dotIdx)}
-                    style={{ width: dotIdx === activePriceIdx ? '20px' : '7px', height: '7px', borderRadius: '4px', background: dotIdx === activePriceIdx ? 'var(--color-accent-primary)' : '#cbd5e1', transition: 'all 0.3s ease', border: 'none', padding: 0, cursor: 'pointer' }}
-                  />
+                    aria-label={`Go to package ${dotIdx + 1}`}
+                    style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
+                  >
+                    <span style={{ width: dotIdx === activePriceIdx ? '20px' : '7px', height: '7px', borderRadius: '4px', background: dotIdx === activePriceIdx ? 'var(--color-accent-primary)' : '#cbd5e1', transition: 'all 0.3s ease', display: 'block' }} />
+                  </button>
                 ))}
               </div>
             </div>
@@ -1240,8 +1267,10 @@ export default function LandingPage() {
                     </div>
 
                     <div className="input-group">
-                      <label className="input-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Service Needed</label>
+                      <label htmlFor="quote-service-select" className="input-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Service Needed</label>
                       <select
+                        id="quote-service-select"
+                        aria-label="Select a service package"
                         className="input-field"
                         style={{ appearance: 'none', background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23e31b23\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2.5\' d=\'M19 9l-7 7-7-7\'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 0.85rem', paddingRight: '2rem' }}
                         value={quoteForm.service}
