@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Menu, X, Sparkles, Star, Calendar,
+  Menu, X, Sparkles, Star, Calendar, ChevronLeft, ChevronRight,
   MapPin, Phone, Mail, Clock, ArrowRight, Shield, Check, MessageSquare
 } from 'lucide-react';
 
@@ -83,15 +83,14 @@ export default function LandingPage() {
     name: '',
     phone: '',
     email: '',
-    date: '',
     vehicle: '',
-    year: '',
     service: '',
     details: ''
   });
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
   const [quoteLoading, setQuoteLoading] = useState(false);
   const [quoteError, setQuoteError] = useState('');
+  const [activePriceIdx, setActivePriceIdx] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,7 +121,6 @@ export default function LandingPage() {
           email:   quoteForm.email,
           car:     quoteForm.vehicle,
           service: quoteForm.service,
-          date:    quoteForm.date,
           message: quoteForm.details,
           pageUrl: window.location.href,
         });
@@ -137,7 +135,7 @@ export default function LandingPage() {
 
       // Optimistic success (no-cors responses are always opaque — cannot read status)
       setQuoteSubmitted(true);
-      setQuoteForm({ name: '', phone: '', email: '', date: '', vehicle: '', year: '', service: '', details: '' });
+      setQuoteForm({ name: '', phone: '', email: '', vehicle: '', service: '', details: '' });
       setTimeout(() => setQuoteSubmitted(false), 6000);
 
     } catch {
@@ -173,7 +171,7 @@ export default function LandingPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
               <span style={{ fontSize: '1.35rem', fontWeight: 900, color: 'var(--color-accent-secondary)', letterSpacing: '-0.02em' }}>A-SHINE</span>
-              <span style={{ fontSize: '0.55rem', fontWeight: 700, color: 'var(--color-text-secondary)', letterSpacing: '0.18em' }}>AUTO VEHICLE DETAILING</span>
+              <span style={{ fontSize: '0.6rem', fontWeight: 700, color: 'var(--color-text-secondary)', letterSpacing: '0.15em' }}>AUTO VEHICLE DETAILING</span>
             </div>
           </Link>
 
@@ -232,11 +230,11 @@ export default function LandingPage() {
               <Link href="#reviews" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Reviews</Link>
               <Link href="#pricing" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
               <Link href="#contact" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
-              <div style={{ borderTop: '1px solid var(--glass-border)', paddingBlock: '1.5rem', marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <a href="tel:5197295856" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700 }}>
-                  <Phone size={18} style={{ color: 'var(--color-accent-primary)' }} /> (519) 729-5856
+              <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem', marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                <a href="tel:5197295856" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-accent-primary)', textDecoration: 'none' }}>
+                  <Phone size={16} /> (519) 729-5856
                 </a>
-                <a href="#contact" className="btn btn--primary btn--full" onClick={() => setIsMobileMenuOpen(false)}>
+                <a href="#contact" className="btn btn--primary btn--full" style={{ borderRadius: '8px', paddingBlock: '0.75rem', fontSize: '0.9rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }} onClick={() => setIsMobileMenuOpen(false)}>
                   BOOK NOW
                 </a>
               </div>
@@ -274,22 +272,23 @@ export default function LandingPage() {
 
             <motion.h1
               variants={fadeIn}
-              style={{ fontSize: 'clamp(2.2rem, 1.8rem + 3.8vw, 4rem)', fontWeight: 900, lineHeight: 1.1, color: 'var(--color-accent-secondary)', letterSpacing: '-0.02em', textTransform: 'none' }}
+              className="hero-title"
+              style={{ fontSize: 'clamp(2rem, 1.6rem + 3vw, 3.8rem)', fontWeight: 900, lineHeight: 1.15, color: 'var(--color-accent-secondary)', letterSpacing: '-0.02em', textTransform: 'none' }}
             >
               Restore the <span style={{ color: 'var(--color-accent-primary)' }}>Shine</span>.<br />
               Protect the Finish.<br />
               Drive with Pride.
             </motion.h1>
 
-            <motion.p variants={fadeIn} style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-base)', lineHeight: '1.6', maxWidth: '550px' }}>
-              Experience premium mobile detailing brought directly to your doorstep. From advanced paint correction and durable ceramic coatings to meticulous interior restoration, we bring back that showroom feel on your schedule.
+            <motion.p variants={fadeIn} className="hero-description" style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-base)', lineHeight: '1.6', maxWidth: '550px' }}>
+              Experience premium mobile auto detailing brought directly to your doorstep. Specializing strictly in complete interior deep shampooing and high-gloss tire & wheel cleaning to bring back that spotless showroom feeling.
             </motion.p>
 
-            <motion.div variants={fadeIn} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-              <a href="#contact" className="btn btn--primary btn--lg" style={{ borderRadius: '6px' }}>
+            <motion.div variants={fadeIn} className="hero-cta-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+              <a href="#contact" className="btn btn--primary btn--lg" style={{ borderRadius: '8px' }}>
                 BOOK APPOINTMENT NOW <ArrowRight size={18} />
               </a>
-              <a href="#services" className="btn btn--secondary btn--lg" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px' }}>
+              <a href="#services" className="btn btn--secondary btn--lg" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '8px' }}>
                 VIEW OUR SERVICES
               </a>
             </motion.div>
@@ -297,19 +296,20 @@ export default function LandingPage() {
             {/* Trust Metrics */}
             <motion.div
               variants={fadeIn}
+              className="hero-metrics-container"
               style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}
             >
               {[
-                { icon: <Star fill="currentColor" size={16} />, title: '5.0 Rating', desc: '380+ Verified Reviews', showBorder: true },
-                { icon: <Check size={16} />, title: 'Elite Quality', desc: '380+ Detailed Cars', showBorder: true },
+                { icon: <Star fill="currentColor" size={16} />, title: '5.0 Rating', desc: 'Verified Customer Reviews', showBorder: true },
+                { icon: <Check size={16} />, title: 'Elite Quality', desc: 'Deep Interior Clean', showBorder: true },
                 { icon: <MapPin size={16} />, title: '100% Mobile', desc: 'We Come To You', showBorder: true },
                 { icon: <Shield size={16} />, title: 'Fully Insured', desc: 'Complete Peace of Mind', showBorder: false }
               ].map((metric, i) => (
-                <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', paddingRight: metric.showBorder ? '1.5rem' : '0', borderRight: metric.showBorder ? '1px solid #e2e8f0' : 'none' }} className="hero-metric-item">
-                  <div style={{ display: 'flex', alignItems: 'center', justifySelf: 'center', justifyContent: 'center', width: '30px', height: '30px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.06)', color: 'var(--color-accent-primary)' }}>
+                <div key={i} style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', paddingRight: metric.showBorder ? '1.5rem' : '0', borderRight: metric.showBorder ? '1px solid #e2e8f0' : 'none' }} className="hero-metric-item">
+                  <div className="hero-metric-icon-circle" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', flexShrink: 0, borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)' }}>
                     {metric.icon}
                   </div>
-                  <div>
+                  <div className="hero-metric-text">
                     <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{metric.title}</h4>
                     <p style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)', margin: 0 }}>{metric.desc}</p>
                   </div>
@@ -342,21 +342,21 @@ export default function LandingPage() {
 
               <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1rem', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '10px', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifySelf: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(227, 27, 35, 0.06)', color: 'var(--color-accent-primary)', flexShrink: 0 }}>
-                  <Shield size={18} />
+                  <Sparkles size={18} />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Ceramic Coating</h4>
-                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>Lasts Up To 5 Years</p>
+                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Interior Shampoo</h4>
+                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>Seats, Carpets & Trunk</p>
                 </div>
               </div>
 
               <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1rem', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '10px', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifySelf: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(227, 27, 35, 0.06)', color: 'var(--color-accent-primary)', flexShrink: 0 }}>
-                  <Sparkles size={18} />
+                  <Shield size={18} />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Paint Correction</h4>
-                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>99% Swirl Removal</p>
+                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Tire & Rim Detailing</h4>
+                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>High Gloss Protection</p>
                 </div>
               </div>
 
@@ -365,8 +365,8 @@ export default function LandingPage() {
                   <Check size={18} strokeWidth={3} />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Interior Detailing</h4>
-                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>Deep Steam Clean</p>
+                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Salt & Stain Removal</h4>
+                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>Deep Steam Cleansing</p>
                 </div>
               </div>
 
@@ -386,15 +386,15 @@ export default function LandingPage() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="section" style={{ background: 'var(--color-bg-secondary)', paddingBlock: 'var(--space-20)' }}>
+      <section id="services" className="section" style={{ background: 'var(--color-bg-secondary)', paddingBlock: '4rem' }}>
         <div className="container">
-          <div className="section-header" style={{ marginBottom: 'var(--space-16)' }}>
-            <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>OUR SERVICES</span>
+          <div className="section-header" style={{ marginBottom: '2rem' }}>
+            <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>SPECIALIZED SERVICES</span>
             <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
-              Detailing Solutions For <span style={{ color: 'var(--color-accent-primary)' }}>Every Vehicle</span>
+              Complete Interior <span style={{ color: 'var(--color-accent-primary)' }}>& Tire Detailing</span>
             </h2>
-            <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
-              We use premium products, advanced techniques, and passion for perfection to deliver unmatched results.
+            <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '650px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
+              We specialize exclusively in deep interior shampooing, steam sanitization, winter salt extraction, food spill cleanup, and high-gloss tire care.
             </p>
           </div>
 
@@ -407,12 +407,12 @@ export default function LandingPage() {
             style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}
           >
             {[
-              { img: '/service-exterior.png', icon: '🚿', title: 'Exterior Detailing', desc: 'Hand wash, decontamination, clay bar, and premium wax coating to deliver a showroom shine.' },
-              { img: '/service-interior.png', icon: '🧽', title: 'Interior Detailing', desc: 'Deep steam cleaning, sanitation, and premium conditioning for a fresh, brand-new car feel.' },
-              { img: '/service-paint.png', icon: '✨', title: 'Paint Correction', desc: 'Remove scratches, swirl marks, oxidation, and restore your paint surface to flawless perfection.' },
-              { img: '/service-ceramic.png', icon: '💎', title: 'Ceramic Coating', desc: 'Long-lasting nano-protection with unbelievable hydrophobic properties and showroom mirror gloss.' },
-              { img: '/service-wheels.png', icon: '🎡', title: 'Wheel & Tire Detailing', desc: 'Deep clean wheels, remove brake dust, polish calipers, and apply glossy protective dressing.' },
-              { img: '/service-engine.png', icon: '👑', title: 'Engine Bay Detailing', desc: 'Professional cleaning and dressing that safely removes grease and dirt, improving engine appearance.' }
+              { img: '/service-ai-interior.png', icon: '🧽', title: 'Full Interior Shampooing', desc: 'Deep shampooing and stain extraction for cloth & leather seats, carpets, dashboard, vents, console, door jambs, and trunk.', pos: 'center 45%' },
+              { img: '/service-ai-steam.png', icon: '🧼', title: 'Steam Cleansing & Salt Removal', desc: 'High-temperature steam cleansing that dissolves embedded winter salt, grime, bacteria, and stubborn floor mat stains.', pos: 'center 50%' },
+              { img: '/service-ai-stain.png', icon: '✨', title: 'Seat Stain & Spill Extraction', desc: 'Specialized hot-water extraction and conditioning for accidental food, drink, or pet spills on seats and carpets.', pos: 'center 50%' },
+              { img: '/service-ai-tire.png', icon: '🛞', title: 'Tire & Rim Deep Cleaning', desc: 'Thorough rim brake dust removal, wheel well scrub, and long-lasting UV-protective high-gloss tire dressing.', pos: 'center 45%' },
+              { img: '/service-ai-truck.png', icon: '🚛', title: 'Truck & Commercial Cabs', desc: 'Professional mobile interior detailing for semi-trucks, dump trucks, loaders, and commercial vehicle cabs.', pos: 'center 45%' },
+              { img: '/service-ai-mobile.png', icon: '🏠', title: 'Mobile or Studio Drop-off', desc: 'We bring our full mobile unit directly to your driveway, or you can drop off your vehicle at our home studio.', pos: 'center 50%' }
             ].map((srv, i) => (
               <motion.div
                 key={i}
@@ -430,24 +430,29 @@ export default function LandingPage() {
                 }}
               >
                 {/* Image top */}
-                <div style={{ width: '100%', height: '200px', position: 'relative', overflow: 'hidden' }}>
-                  <img src={srv.img} alt={srv.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div className="service-card-img-wrap" style={{ width: '100%', height: '240px', position: 'relative', overflow: 'hidden', background: '#0a0d14' }}>
+                  <img
+                    src={srv.img}
+                    alt={srv.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: srv.pos, display: 'block' }}
+                    className="transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
 
                 {/* Content */}
-                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, gap: '0.75rem' }}>
-                  <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 'bold', color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '-0.01em', margin: 0 }}>
+                <div className="service-card-body" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, gap: '0.75rem' }}>
+                  <h3 className="service-card-title" style={{ fontSize: 'var(--text-lg)', fontWeight: 'bold', color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '-0.01em', margin: 0 }}>
                     {srv.title}
                   </h3>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                  <p className="service-card-desc" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
                     {srv.desc}
                   </p>
                   <Link
                     href="#contact"
-                    className="flex items-center gap-1.5"
+                    className="flex items-center gap-1.5 service-card-link"
                     style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', marginTop: 'auto', textDecoration: 'none' }}
                   >
-                    LEARN MORE <ArrowRight size={14} />
+                    BOOK THIS SERVICE <ArrowRight size={14} />
                   </Link>
                 </div>
               </motion.div>
@@ -457,7 +462,7 @@ export default function LandingPage() {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="section" style={{ paddingBlock: 'var(--space-24)' }}>
+      <section id="about" className="section" style={{ paddingBlock: '4.5rem' }}>
         <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-16)', alignItems: 'center' }}>
 
           {/* Left Column - Image */}
@@ -465,14 +470,15 @@ export default function LandingPage() {
             <div style={{ position: 'relative', width: '100%', maxWidth: '480px' }}>
               {/* Main image */}
               <img
-                src="/about-detailer.png"
-                alt="Detailer buffing a black sports car"
+                src="/service-ai-interior.png"
+                alt="Professional AI generated interior car detailing"
                 className="rounded-2xl shadow-xl"
-                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                style={{ width: '100%', height: '420px', objectFit: 'cover', borderRadius: '16px' }}
               />
 
               {/* Floating Badge */}
               <div
+                className="about-experience-badge"
                 style={{
                   position: 'absolute',
                   bottom: '24px',
@@ -503,16 +509,16 @@ export default function LandingPage() {
               We Don't Just Detail Cars.<br />We Care For Them Like Our <span style={{ color: 'var(--color-accent-primary)' }}>Own</span>.
             </h2>
             <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.6', fontSize: 'var(--text-base)' }}>
-              A-Shine Auto Mobile Detailing was built on a passion for cars and a commitment to exceptional service. We bring showroom-quality detailing to your doorstep with convenience, honesty, and unmatched attention to detail.
+              A-Shine Auto Mobile Detailing is operated by Kulwant Sandhi with a deep passion for auto detailing. Specializing exclusively in complete interior shampooing, winter salt extraction, food spill cleanup, and tire/wheel detailing — delivering spotless, showroom-level care with honest pricing.
             </p>
 
             {/* Checklist */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBlock: '0.5rem' }}>
               {[
-                'Professional & Trained Detailers',
-                'Premium Products & Equipment',
-                '100% Mobile Service – We Come To You',
-                'Satisfaction Guarantee on Every Service'
+                'Professional & Passionate Detailer (Kulwant Sandhi)',
+                'Deep Steam Shampooing & Winter Salt Extraction',
+                'Mobile Service (We Come To You) or Home Studio Drop-off',
+                '100% Satisfaction Guarantee on Every Job'
               ].map((bullet, i) => (
                 <div key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)' }}>
@@ -526,10 +532,10 @@ export default function LandingPage() {
             {/* Founder signature block */}
             <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem', marginTop: '0.5rem' }}>
               <span style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '1.8rem', color: 'var(--color-accent-primary)', fontWeight: 'bold' }}>
-                James Carter
+                Kulwant Sandhi
               </span>
               <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '0.15rem' }}>
-                Founder, A-Shine Auto Mobile Detailing
+                Owner & Lead Detailer, A-Shine Auto Mobile Detailing
               </span>
             </div>
           </div>
@@ -537,53 +543,185 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Our Gallery Section (Before/After) */}
-      <section id="gallery" className="section" style={{ background: 'var(--color-bg-secondary)', paddingBlock: 'var(--space-20)' }}>
+      {/* Our Gallery Section */}
+      <section id="gallery" className="section" style={{ background: 'var(--color-bg-secondary)', paddingBlock: '4rem' }}>
         <div className="container">
-          <div className="section-header" style={{ marginBottom: 'var(--space-16)' }}>
+          <div className="section-header" style={{ marginBottom: '2rem' }}>
             <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>OUR GALLERY</span>
-            <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
+            <h2 className="section-title" style={{ fontSize: 'clamp(1.4rem, 5vw, 2.5rem)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
               Real Transformations. <span style={{ color: 'var(--color-accent-primary)' }}>Real Results</span>.
             </h2>
             <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
-              Drag the slider to see how our premium detailing processes restore and protect your vehicle.
+              From everyday cars to heavy-duty trucks and equipment — we detail every vehicle to perfection.
             </p>
           </div>
+        </div>
 
-          {/* Before/After Sliders Grid */}
-          <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem' }}>
+        {/* Full-bleed scrolling gallery */}
+        <div className="marquee-container gallery-marquee-container" style={{ paddingBlock: '1rem', marginTop: '0.5rem' }}>
+          <div className="gallery-marquee-track">
+            {/* Set 1 */}
             {[
-              { before: '/service-exterior.png', after: '/service-exterior.png', beforeFilter: 'brightness(0.65) contrast(0.9) saturate(0.75) blur(1px)', label: 'Exterior Detailing' },
-              { before: '/service-interior.png', after: '/service-interior.png', beforeFilter: 'brightness(0.6) saturate(0.6) blur(0.5px)', label: 'Interior Detailing' },
-              { before: '/service-paint.png', after: '/service-paint.png', beforeFilter: 'brightness(0.85) contrast(0.8) grayscale(0.2) saturate(0.8)', label: 'Paint Correction' },
-              { before: '/service-wheels.png', after: '/service-wheels.png', beforeFilter: 'brightness(0.55) grayscale(0.35)', label: 'Wheel & Tire Detailing' }
-            ].map((slide, i) => (
-              <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <BeforeAfterSlider
-                  before={slide.before}
-                  after={slide.after}
-                  label={slide.label}
-                  beforeFilter={slide.beforeFilter}
-                />
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 'bold', color: 'var(--color-accent-secondary)', textAlign: 'center', margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {slide.label}
-                </h4>
+              { src: '/gallery-toyota-4runner.jpg', label: 'Interior & Exterior Detail' },
+              { src: '/gallery-mack-truck.jpg', label: 'Commercial Dump Truck Detail' },
+              { src: '/gallery-freightliner.jpg', label: 'Semi Truck Interior Detail' },
+              { src: '/gallery-gehl-loader.jpg', label: 'Heavy Equipment Cab Detail' },
+              { src: '/gallery-toyota-highlander.jpg', label: 'Full Interior Detailing' },
+            ].map((item, i) => (
+              <div
+                key={`g1-${i}`}
+                className="gallery-card"
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--glass-border)',
+                  boxShadow: 'var(--shadow-sm)',
+                  background: '#111',
+                  flexShrink: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+                <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
+                  <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 700, color: '#f1f1f1', letterSpacing: '0.02em' }}>{item.label}</p>
+                  <div style={{ display: 'flex', gap: '2px', marginTop: '0.35rem' }}>
+                    {[...Array(5)].map((_, j) => <Star key={j} size={11} fill="currentColor" style={{ color: 'var(--color-accent-primary)' }} />)}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* Set 2 — duplicate for seamless loop */}
+            {[
+              { src: '/gallery-toyota-4runner.jpg', label: 'Interior & Exterior Detail' },
+              { src: '/gallery-mack-truck.jpg', label: 'Commercial Dump Truck Detail' },
+              { src: '/gallery-freightliner.jpg', label: 'Semi Truck Interior Detail' },
+              { src: '/gallery-gehl-loader.jpg', label: 'Heavy Equipment Cab Detail' },
+              { src: '/gallery-toyota-highlander.jpg', label: 'Full Interior Detailing' },
+            ].map((item, i) => (
+              <div
+                key={`g2-${i}`}
+                className="gallery-card"
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--glass-border)',
+                  boxShadow: 'var(--shadow-sm)',
+                  background: '#111',
+                  flexShrink: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+                <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
+                  <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 700, color: '#f1f1f1', letterSpacing: '0.02em' }}>{item.label}</p>
+                  <div style={{ display: 'flex', gap: '2px', marginTop: '0.35rem' }}>
+                    {[...Array(5)].map((_, j) => <Star key={j} size={11} fill="currentColor" style={{ color: 'var(--color-accent-primary)' }} />)}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
+        </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-            <Link href="#contact" className="btn btn--secondary btn--lg" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px' }}>
-              VIEW MORE RESULTS →
-            </Link>
+        {/* Row 2 — Right to Left */}
+        <div className="marquee-container gallery-marquee-container" style={{ paddingBlock: '0', marginTop: '1.5rem' }}>
+          <div className="gallery-marquee-track-rtl">
+            {/* Set 1 */}
+            {[
+              { src: '/gallery-hyundai-elantra.png', label: 'Interior Shampoo & Detail' },
+              { src: '/gallery-audi-interior.png',   label: 'Interior Deep Clean' },
+              { src: '/gallery-audi-q5.jpg',         label: 'Full Interior & Exterior' },
+              { src: '/gallery-tesla-modelx.jpg',    label: 'Full Vehicle Detailing' },
+              { src: '/gallery-mercedes-engine.jpg', label: 'Interior & Rim Detailing' },
+            ].map((item, i) => (
+              <div
+                key={`r1-${i}`}
+                className="gallery-card"
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--glass-border)',
+                  boxShadow: 'var(--shadow-sm)',
+                  background: '#111',
+                  flexShrink: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+                <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
+                  <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 700, color: '#f1f1f1', letterSpacing: '0.02em' }}>{item.label}</p>
+                  <div style={{ display: 'flex', gap: '2px', marginTop: '0.35rem' }}>
+                    {[...Array(5)].map((_, j) => <Star key={j} size={11} fill="currentColor" style={{ color: 'var(--color-accent-primary)' }} />)}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* Set 2 — duplicate for seamless loop */}
+            {[
+              { src: '/gallery-hyundai-elantra.png', label: 'Interior Shampoo & Detail' },
+              { src: '/gallery-audi-interior.png',   label: 'Interior Deep Clean' },
+              { src: '/gallery-audi-q5.jpg',         label: 'Full Interior & Exterior' },
+              { src: '/gallery-tesla-modelx.jpg',    label: 'Full Vehicle Detailing' },
+              { src: '/gallery-mercedes-engine.jpg', label: 'Interior & Rim Detailing' },
+            ].map((item, i) => (
+              <div
+                key={`r2-${i}`}
+                className="gallery-card"
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--glass-border)',
+                  boxShadow: 'var(--shadow-sm)',
+                  background: '#111',
+                  flexShrink: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div className="gallery-card-img" style={{ overflow: 'hidden', background: '#111' }}>
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+                <div style={{ padding: '0.9rem 1.1rem', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111' }}>
+                  <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 700, color: '#f1f1f1', letterSpacing: '0.02em' }}>{item.label}</p>
+                  <div style={{ display: 'flex', gap: '2px', marginTop: '0.35rem' }}>
+                    {[...Array(5)].map((_, j) => <Star key={j} size={11} fill="currentColor" style={{ color: 'var(--color-accent-primary)' }} />)}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Reviews Section */}
-      <section id="reviews" className="section" style={{ paddingBlock: 'var(--space-20)' }}>
+      <section id="reviews" className="section" style={{ paddingBlock: '4rem' }}>
         <div className="container">
-          <div className="section-header" style={{ marginBottom: 'var(--space-16)' }}>
+          <div className="section-header" style={{ marginBottom: '2rem' }}>
             <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>CUSTOMER REVIEWS</span>
             <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
               See What Our <span style={{ color: 'var(--color-accent-primary)' }}>Clients Say</span>
@@ -594,52 +732,82 @@ export default function LandingPage() {
             <div className="marquee-track">
               {/* Set 1 */}
               {[
-                { text: 'Amazing service! My car looks better than the day I bought it. The team was professional, on time, and super friendly.', name: 'Michael T.', car: 'BMW 330i' },
-                { text: 'They came to my office and detailed my car in the parking lot. Super convenient and the results were absolutely worth it!', name: 'Sarah K.', car: 'Audi Q5' },
-                { text: 'The ceramic coating is incredible. Water just beads right off and the shine is next level. Highly recommended!', name: 'David R.', car: 'Porsche 911' },
-                { text: 'Best detailing service in town. Honest pricing, great communication, and my truck looks brand new inside and out.', name: 'Jason L.', car: 'Chevrolet Silverado' },
-                { text: 'Ive tried many detailers but A-Shine is on another level. Attention to detail is unmatched. Will be coming back!', name: 'Emily P.', car: 'Tesla Model 3' }
+                { text: 'I recently got interior detailing done here and I\'m extremely satisfied with the results. They did a deep and thorough cleaning—seats, carpets, dashboard, and even the smallest corners were spotless. My car looks and smells like new again.', name: 'Ajay Navadiya', time: '3 months ago' },
+                { text: 'Spotless Cleaning by Kulwant. He is amazing and very professional in what he does. No complaints.', name: 'Palash Mardhekar', time: '2 months ago' },
+                { text: 'I had an excellent experience and couldn\'t be happier with the results. From the moment I arrived, he was friendly, welcoming, and genuinely passionate about what he does. He took the time to explain the entire detailing process.', name: 'Saiel Tivatane', time: '2 weeks ago' },
+                { text: 'Great experience. I got my model Y detailing done. I recommend dropping off vehicle to his home so even if he misses a spot you can ask him to clean when you\'re picking up your vehicle.', name: 'Gaurang Patel', time: 'a month ago' },
+                { text: 'I recently had my vehicle detailed for the first time, and it was an excellent experience from start to finish. Everything was clearly explained beforehand, so I knew exactly what to expect, and he was very professional, friendly, and thorough.', name: 'Katalina Avila', time: '2 weeks ago' },
+                { text: 'I had an excellent experience with this auto detailer. The attention to detail was outstanding — my car looks brand new inside and out. Every surface was thoroughly cleaned, polished, and restored to a high standard.', name: 'Peter Godspower', time: '3 months ago' },
+                { text: 'Very great experience. My car was thoroughly cleaned and shining like new. Excellent communication. Did engine bay detailing as well and its amazing. I brought new car mats and he installed it for free! Very satisfied with service.', name: 'Apoorv B. Chavda', time: '3 months ago' },
+                { text: 'Phenomenal Experience with A-Shine Auto Mobile Detailing! I don\'t normally write reviews, but the incredible service I received here completely earned it.', name: 'Harjeet Singh', time: 'a month ago' },
+                { text: 'Absolutely amazing service! My Toyota Sienna looks brand new inside and out. The attention to detail was incredible — every surface was spotless, the carpets looked refreshed, and they even got rid of all the little crumbs and marks.', name: 'Aya-xox', time: 'a month ago' },
+                { text: 'Got my suv cleaned fully inside for the first time from A-Shine and very satisfied with the steam cleansing, shampooing and polishing. Very pleased to see the winter salt completely removed.', name: 'Nha TamThu', time: '2 weeks ago' },
+                { text: 'I\'ve been coming to A Shine Automobile Detailing regularly, and Kulwant ji always does an amazing job. I recently had the inside of my car detailed again, and it came back looking spotless and fresh. The attention to detail is excellent.', name: 'Pankaj Bains', time: '2 months ago' },
+                { text: 'Called last-minute and still received quick and efficient service. For a very reasonable price my car received an amazing cleaning job and looks brand new again. I will be back and definitely would recommend this business. Thank you again!', name: 'Jessica Chan', time: 'a month ago' },
+                { text: 'I highly recommend this place for car detailing. Yesterday night food was spilled at the back seat and in trunk of my brand new Elantra, I called him in the morning and inspite of busy schedule he gave me service. Amazing!', name: 'Shanil Gosavi', time: 'a year ago' },
+                { text: 'We had the pleasure of A-Shine out to detail our pick up truck. Communication was quick and it was easy to book. We can\'t believe how clean it came out. There was job site dirt, salt stains, dog hair, kids grime - completely cleaned it all. Absolutely recommend.', name: 'Andrea Bradley', time: '2 weeks ago' },
+                { text: 'Kulwant is very professional! He always goes the extra mile to make his work more appealing. Very seasonal price for superior work. I wish him all the best!', name: 'Gration Fernando', time: '3 weeks ago' },
               ].map((review, i) => (
-                <div key={`set1-${i}`} className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', boxShadow: 'var(--shadow-sm)', width: '320px', flexShrink: 0 }}>
-                  <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
-                    {[...Array(5)].map((_, j) => <Star key={j} size={15} fill="currentColor" />)}
+                <div key={`set1-${i}`} className="glass-card review-card" style={{ padding: '1.75rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', flexShrink: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
+                      {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
+                    </div>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#16a34a', background: 'rgba(22, 163, 74, 0.08)', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(22, 163, 74, 0.2)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Google Review
+                    </span>
                   </div>
-                  <p style={{ fontStyle: 'italic', fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
-                    "{review.text}"
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                    &ldquo;{review.text}&rdquo;
                   </p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '1rem' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem' }}>
+                    <div style={{ width: '38px', height: '38px', minWidth: '38px', minHeight: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(227, 27, 35, 0.12), rgba(227, 27, 35, 0.04))', border: '1px solid rgba(227, 27, 35, 0.2)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem', flexShrink: 0 }}>
                       {review.name.split(' ')[0][0]}{review.name.split(' ')[1]?.[0] || ''}
                     </div>
                     <div>
                       <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h4>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>{review.car}</span>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{review.time}</span>
                     </div>
                   </div>
                 </div>
               ))}
               {/* Set 2 (Duplicate for loop continuity) */}
               {[
-                { text: 'Amazing service! My car looks better than the day I bought it. The team was professional, on time, and super friendly.', name: 'Michael T.', car: 'BMW 330i' },
-                { text: 'They came to my office and detailed my car in the parking lot. Super convenient and the results were absolutely worth it!', name: 'Sarah K.', car: 'Audi Q5' },
-                { text: 'The ceramic coating is incredible. Water just beads right off and the shine is next level. Highly recommended!', name: 'David R.', car: 'Porsche 911' },
-                { text: 'Best detailing service in town. Honest pricing, great communication, and my truck looks brand new inside and out.', name: 'Jason L.', car: 'Chevrolet Silverado' },
-                { text: 'Ive tried many detailers but A-Shine is on another level. Attention to detail is unmatched. Will be coming back!', name: 'Emily P.', car: 'Tesla Model 3' }
+                { text: 'I recently got interior detailing done here and I\'m extremely satisfied with the results. They did a deep and thorough cleaning—seats, carpets, dashboard, and even the smallest corners were spotless. My car looks and smells like new again.', name: 'Ajay Navadiya', time: '3 months ago' },
+                { text: 'Spotless Cleaning by Kulwant. He is amazing and very professional in what he does. No complaints.', name: 'Palash Mardhekar', time: '2 months ago' },
+                { text: 'I had an excellent experience and couldn\'t be happier with the results. From the moment I arrived, he was friendly, welcoming, and genuinely passionate about what he does. He took the time to explain the entire detailing process.', name: 'Saiel Tivatane', time: '2 weeks ago' },
+                { text: 'Great experience. I got my model Y detailing done. I recommend dropping off vehicle to his home so even if he misses a spot you can ask him to clean when you\'re picking up your vehicle.', name: 'Gaurang Patel', time: 'a month ago' },
+                { text: 'I recently had my vehicle detailed for the first time, and it was an excellent experience from start to finish. Everything was clearly explained beforehand, so I knew exactly what to expect, and he was very professional, friendly, and thorough.', name: 'Katalina Avila', time: '2 weeks ago' },
+                { text: 'I had an excellent experience with this auto detailer. The attention to detail was outstanding — my car looks brand new inside and out. Every surface was thoroughly cleaned, polished, and restored to a high standard.', name: 'Peter Godspower', time: '3 months ago' },
+                { text: 'Very great experience. My car was thoroughly cleaned and shining like new. Excellent communication. Did engine bay detailing as well and its amazing. I brought new car mats and he installed it for free! Very satisfied with service.', name: 'Apoorv B. Chavda', time: '3 months ago' },
+                { text: 'Phenomenal Experience with A-Shine Auto Mobile Detailing! I don\'t normally write reviews, but the incredible service I received here completely earned it.', name: 'Harjeet Singh', time: 'a month ago' },
+                { text: 'Absolutely amazing service! My Toyota Sienna looks brand new inside and out. The attention to detail was incredible — every surface was spotless, the carpets looked refreshed, and they even got rid of all the little crumbs and marks.', name: 'Aya-xox', time: 'a month ago' },
+                { text: 'Got my suv cleaned fully inside for the first time from A-Shine and very satisfied with the steam cleansing, shampooing and polishing. Very pleased to see the winter salt completely removed.', name: 'Nha TamThu', time: '2 weeks ago' },
+                { text: 'I\'ve been coming to A Shine Automobile Detailing regularly, and Kulwant ji always does an amazing job. I recently had the inside of my car detailed again, and it came back looking spotless and fresh. The attention to detail is excellent.', name: 'Pankaj Bains', time: '2 months ago' },
+                { text: 'Called last-minute and still received quick and efficient service. For a very reasonable price my car received an amazing cleaning job and looks brand new again. I will be back and definitely would recommend this business. Thank you again!', name: 'Jessica Chan', time: 'a month ago' },
+                { text: 'I highly recommend this place for car detailing. Yesterday night food was spilled at the back seat and in trunk of my brand new Elantra, I called him in the morning and inspite of busy schedule he gave me service. Amazing!', name: 'Shanil Gosavi', time: 'a year ago' },
+                { text: 'We had the pleasure of A-Shine out to detail our pick up truck. Communication was quick and it was easy to book. We can\'t believe how clean it came out. There was job site dirt, salt stains, dog hair, kids grime - completely cleaned it all. Absolutely recommend.', name: 'Andrea Bradley', time: '2 weeks ago' },
+                { text: 'Kulwant is very professional! He always goes the extra mile to make his work more appealing. Very seasonal price for superior work. I wish him all the best!', name: 'Gration Fernando', time: '3 weeks ago' },
               ].map((review, i) => (
-                <div key={`set2-${i}`} className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', boxShadow: 'var(--shadow-sm)', width: '320px', flexShrink: 0 }}>
-                  <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
-                    {[...Array(5)].map((_, j) => <Star key={j} size={15} fill="currentColor" />)}
+                <div key={`set2-${i}`} className="glass-card review-card" style={{ padding: '1.75rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', flexShrink: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
+                      {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
+                    </div>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#16a34a', background: 'rgba(22, 163, 74, 0.08)', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(22, 163, 74, 0.2)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Google Review
+                    </span>
                   </div>
-                  <p style={{ fontStyle: 'italic', fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
-                    "{review.text}"
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                    &ldquo;{review.text}&rdquo;
                   </p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '1rem' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem' }}>
+                    <div style={{ width: '38px', height: '38px', minWidth: '38px', minHeight: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(227, 27, 35, 0.12), rgba(227, 27, 35, 0.04))', border: '1px solid rgba(227, 27, 35, 0.2)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem', flexShrink: 0 }}>
                       {review.name.split(' ')[0][0]}{review.name.split(' ')[1]?.[0] || ''}
                     </div>
                     <div>
                       <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h4>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>{review.car}</span>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{review.time}</span>
                     </div>
                   </div>
                 </div>
@@ -650,29 +818,33 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="section" style={{ background: 'var(--color-bg-secondary)', paddingBlock: 'var(--space-20)' }}>
+      <section id="pricing" className="section" style={{ background: 'var(--color-bg-secondary)', paddingBlock: '4rem' }}>
         <div className="container">
-          <div className="section-header" style={{ marginBottom: 'var(--space-16)' }}>
-            <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>PRICING</span>
+          <div className="section-header" style={{ marginBottom: '2rem' }}>
+            <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>PRICING & PACKAGES</span>
             <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
-              Choose the <span style={{ color: 'var(--color-accent-primary)' }}>Perfect Package</span>
+              Full Interior Shampooing <span style={{ color: 'var(--color-accent-primary)' }}>& Detailing</span>
             </h2>
+            <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '650px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
+              Deep cleaning & steam shampooing that includes everything inside your vehicle: seats, carpets, dashboard, vents, console, door jambs & trunk.
+            </p>
           </div>
 
-          {/* Pricing Grid */}
-          <div className="pricing-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
+          {/* Desktop Pricing Grid */}
+          <div className="pricing-grid pricing-grid-desktop" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
 
-            {/* Basic Detail */}
+            {/* Small Car */}
             <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>BASIC DETAIL</span>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Essential care for a clean, fresh ride.</p>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SMALL CAR</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Sedans, Coupes & Compact Cars.</p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$149</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>STARTING AT</span>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$100</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
-                {['Exterior Hand Wash', 'Interior Vacuuming', 'Dashboard & Console Wipe', 'Window Cleaning'].map((feat, i) => (
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                {['Full Seat Shampooing & Stain Removal', 'Deep Carpet Extraction & Salt Removal', 'Dashboard, Console & Air Vents Detailed', 'Door Jambs & Trunk Cleaned', 'Steam Cleansing & Sanitization', 'Odor Treatment & Fresh Polish'].map((feat, i) => (
                   <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                     <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
                     <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
@@ -681,49 +853,25 @@ export default function LandingPage() {
               </div>
 
               <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
-                BOOK NOW →
+                BOOK FOR $100 →
               </Link>
             </div>
 
-            {/* Premium Detail */}
-            <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>PREMIUM DETAIL</span>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Our most popular full service package.</p>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$249</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>STARTING AT</span>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Everything in Basic, Plus:</span>
-                {['Clay Bar Treatment', 'Interior Deep Cleaning', 'Leather Conditioning', 'Door Jambs & Trunk Cleaned', 'High Gloss Tire Dressing'].map((feat, i) => (
-                  <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
-                    <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
-                BOOK NOW →
-              </Link>
-            </div>
-
-            {/* Signature Detail (Featured) */}
+            {/* SUV 5-Seater (Featured) */}
             <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '2px solid var(--color-accent-primary)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-md)' }}>
               <div style={{ position: 'absolute', top: '-13px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent-primary)', color: 'white', fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.1em', padding: '0.25rem 0.75rem', borderRadius: '4px' }}>
                 MOST POPULAR
               </div>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SIGNATURE DETAIL</span>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>The ultimate inside & out transformation.</p>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SUV (5 SEATS)</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>5-Seater SUVs, Crossovers & Pickups.</p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$399</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>STARTING AT</span>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$125</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Everything in Premium, Plus:</span>
-                {['1-Step Paint Correction (Light)', 'One-Stop Polish', 'Premium Wax Protection', 'Engine Bay Cleaning', 'Interior Steam Cleaning', 'Odor Elimination Treatment'].map((feat, i) => (
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                {['Full Seat Shampooing & Stain Removal', 'Deep Carpet Extraction & Salt Removal', 'Dashboard, Console & Cup Holders Detailed', 'Door Jambs & Cargo/Trunk Cleaned', 'Full Steam Cleansing & Sanitization', 'Odor Treatment & Leather Conditioning'].map((feat, i) => (
                   <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                     <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
                     <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
@@ -732,22 +880,22 @@ export default function LandingPage() {
               </div>
 
               <Link href="#contact" className="btn btn--primary btn--full" style={{ borderRadius: '6px', marginTop: 'auto' }}>
-                BOOK NOW →
+                BOOK FOR $125 →
               </Link>
             </div>
 
-            {/* Ceramic Coating */}
+            {/* 7-Seater / Large */}
             <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>CERAMIC COATING</span>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Long-lasting protection for your vehicle.</p>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>7-SEATER / LARGE</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>7-Seater SUVs, Minivans & Large Trucks.</p>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$699</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>STARTING AT</span>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$150</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Everything in Signature, Plus:</span>
-                {['2-Step Paint Correction', 'Professional Ceramic Coating', '9H Hardness Finish', 'Hydrophobic Finish', 'Up to 5 Years Protection'].map((feat, i) => (
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                {['All 3 Rows Seat Shampooing & Stain Removal', 'Deep Carpet Extraction & Salt Removal', 'Dashboard, Console & Rear Controls Detailed', 'Door Jambs & Trunk Area Cleaned', 'Full Steam Cleansing & Sanitization', 'Heavy Spill & Pet Hair Extraction'].map((feat, i) => (
                   <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                     <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
                     <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
@@ -756,26 +904,194 @@ export default function LandingPage() {
               </div>
 
               <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
-                BOOK NOW →
+                BOOK FOR $150 →
+              </Link>
+            </div>
+
+            {/* Tire & Rim Package */}
+            <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TIRE & RIM CARE</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Deep brake dust cleaning & glossy tire shine.</p>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$25</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>OR FREE WITH INTERIOR</span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Complete Wheel Care:</span>
+                {['Heavy Brake Dust & Dirt Removal', 'Deep Rim & Caliper Surface Scrub', 'Tire Sidewall Cleansing & Prep', 'High-Gloss UV Protective Tire Dressing', 'Included FREE with any Interior Shampoo', 'Standalone Tire & Rim Detailing Service'].map((feat, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
+                    <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
+                BOOK TIRE CARE →
               </Link>
             </div>
 
           </div>
 
+          {/* Mobile Pricing Carousel (Middle Left & Right Arrows + Compact Card) */}
+          <div className="pricing-mobile-carousel" style={{ position: 'relative', width: '100%', maxWidth: '340px', marginInline: 'auto', paddingInline: '1.25rem' }}>
+
+            {/* Middle Left Arrow */}
+            <button
+              onClick={() => setActivePriceIdx(prev => (prev > 0 ? prev - 1 : 3))}
+              style={{ position: 'absolute', left: '-6px', top: '52%', transform: 'translateY(-50%)', zIndex: 10, width: '38px', height: '38px', borderRadius: '50%', background: 'var(--color-accent-primary)', color: '#ffffff', border: '2px solid #ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(227, 27, 35, 0.35)', cursor: 'pointer' }}
+              aria-label="Previous Package"
+            >
+              <ChevronLeft size={22} />
+            </button>
+
+            {/* Middle Right Arrow */}
+            <button
+              onClick={() => setActivePriceIdx(prev => (prev < 3 ? prev + 1 : 0))}
+              style={{ position: 'absolute', right: '-6px', top: '52%', transform: 'translateY(-50%)', zIndex: 10, width: '38px', height: '38px', borderRadius: '50%', background: 'var(--color-accent-primary)', color: '#ffffff', border: '2px solid #ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(227, 27, 35, 0.35)', cursor: 'pointer' }}
+              aria-label="Next Package"
+            >
+              <ChevronRight size={22} />
+            </button>
+
+            {/* Indicator Dots Bar */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', marginBottom: '0.75rem' }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                PACKAGE {activePriceIdx + 1} OF 4
+              </span>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                {[0, 1, 2, 3].map((dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    onClick={() => setActivePriceIdx(dotIdx)}
+                    style={{ width: dotIdx === activePriceIdx ? '20px' : '7px', height: '7px', borderRadius: '4px', background: dotIdx === activePriceIdx ? 'var(--color-accent-primary)' : '#cbd5e1', transition: 'all 0.3s ease', border: 'none', padding: 0, cursor: 'pointer' }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Compact Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activePriceIdx}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+              >
+                {activePriceIdx === 0 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SMALL CAR</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>Sedans, Coupes & Compact Cars.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$100</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                      {['Full Seat Shampooing & Stain Removal', 'Deep Carpet Extraction & Salt Removal', 'Dashboard, Console & Air Vents Detailed', 'Door Jambs & Trunk Cleaned', 'Full Steam Cleansing & Sanitization', 'Odor Treatment & Fresh Polish'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK FOR $100 →
+                    </Link>
+                  </div>
+                )}
+
+                {activePriceIdx === 1 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '2px solid var(--color-accent-primary)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(227,27,35,0.08)' }}>
+                    <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent-primary)', color: 'white', fontSize: '0.6rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.1em', padding: '0.15rem 0.6rem', borderRadius: '4px' }}>
+                      MOST POPULAR
+                    </div>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SUV (5 SEATS)</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>5-Seater SUVs, Crossovers & Pickups.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$125</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                      {['Full Seat Shampooing & Stain Removal', 'Deep Carpet Extraction & Salt Removal', 'Dashboard, Console & Cup Holders Detailed', 'Door Jambs & Cargo/Trunk Cleaned', 'Full Steam Cleansing & Sanitization', 'Odor Treatment & Leather Conditioning'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--primary btn--full" style={{ borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK FOR $125 →
+                    </Link>
+                  </div>
+                )}
+
+                {activePriceIdx === 2 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>7-SEATER / LARGE</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>7-Seater SUVs, Minivans & Large Trucks.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$150</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                      {['All 3 Rows Seat Shampooing & Stain Removal', 'Deep Carpet Extraction & Salt Removal', 'Dashboard, Console & Rear Controls Detailed', 'Door Jambs & Trunk Area Cleaned', 'Full Steam Cleansing & Sanitization', 'Heavy Spill & Pet Hair Extraction'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK FOR $150 →
+                    </Link>
+                  </div>
+                )}
+
+                {activePriceIdx === 3 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TIRE & RIM CARE</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>Deep brake dust cleaning & glossy tire shine.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$25</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>OR FREE WITH INTERIOR</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Complete Wheel Care:</span>
+                      {['Heavy Brake Dust & Dirt Removal', 'Deep Rim & Caliper Surface Scrub', 'Tire Sidewall Cleansing & Prep', 'High-Gloss UV Protective Tire Dressing', 'Included FREE with any Interior Shampoo', 'Standalone Tire & Rim Detailing Service'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK TIRE CARE →
+                    </Link>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
           {/* Trust Mappings Bar */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'wrap', borderTop: '1px solid var(--glass-border)', marginTop: '4rem', paddingTop: '2rem' }}>
+          <div className="trust-bar" style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', borderTop: '1px solid var(--glass-border)', marginTop: '3rem', paddingTop: '1.5rem' }}>
             {[
-              { icon: '🚗', title: '100% Mobile Service', desc: 'We come to you - home, office, or anywhere.' },
-              { icon: '🛡️', title: 'Licensed & Insured', desc: 'Fully insured for your peace of mind.' },
-              { icon: '⭐', title: 'Premium Products', desc: 'Industry-leading products for the best results.' },
-              { icon: '🕒', title: 'On-Time & Reliable', desc: 'We respect your time and always deliver.' },
-              { icon: '🤝', title: 'Satisfaction Guarantee', desc: 'Not happy? We\'ll make it right. That\'s our promise.' }
+              { icon: '🚗', title: '100% Mobile or Drop-Off', desc: 'We come to your location or drop off at our studio.' },
+              { icon: '🛡️', title: 'Deep Steam Sanitization', desc: 'Eliminates bacteria, odors, and winter salt stains.' },
+              { icon: '⭐', title: '5-Star Customer Rated', desc: 'Proven results loved by dozens of happy clients.' },
+              { icon: '🕒', title: 'Flexible Scheduling', desc: 'Last-minute & weekend bookings welcomed.' },
+              { icon: '🤝', title: 'Satisfaction Promise', desc: 'We go the extra mile to make your vehicle spotless.' }
             ].map((pt, i) => (
-              <div key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', flex: '1 1 200px' }}>
-                <span style={{ fontSize: '1.5rem', lineHeight: 1 }}>{pt.icon}</span>
+              <div key={i} className="trust-bar-item" style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start', flex: '1 1 180px' }}>
+                <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }}>{pt.icon}</span>
                 <div>
-                  <h5 style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-text-primary)', margin: 0 }}>{pt.title}</h5>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', margin: 0, marginTop: '0.15rem' }}>{pt.desc}</p>
+                  <h5 style={{ fontSize: '0.82rem', fontWeight: 'bold', color: 'var(--color-text-primary)', margin: 0 }}>{pt.title}</h5>
+                  <p style={{ fontSize: '0.72rem', color: 'var(--color-text-secondary)', margin: 0, marginTop: '0.1rem', lineHeight: 1.4 }}>{pt.desc}</p>
                 </div>
               </div>
             ))}
@@ -785,65 +1101,63 @@ export default function LandingPage() {
       </section>
 
       {/* Contact & Free Quote Section */}
-      <section id="contact" className="section" style={{ paddingBlock: 'var(--space-24)', position: 'relative' }}>
+      <section id="contact" className="section" style={{ paddingBlock: '4.5rem', position: 'relative' }}>
         <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-16)', alignItems: 'start' }}>
 
           {/* Left Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 'bold', letterSpacing: '0.15em', color: 'var(--color-accent-primary)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: '0.15em', color: 'var(--color-accent-primary)' }}>
               GET IN TOUCH
             </span>
-            <h2 style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', margin: 0, lineHeight: 1.1 }}>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 5.5vw, 2.2rem)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', margin: 0, lineHeight: 1.15 }}>
               We're Here<br />To Help
             </h2>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-base)', lineHeight: '1.6', margin: 0 }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem', lineHeight: '1.5', margin: 0 }}>
               Have questions or ready to book your detailing service? Reach out to us today – we're just a call or message away!
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1rem' }}>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)' }}>
-                  <Phone size={20} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '0.5rem' }}>
+              <div className="contact-info-item" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <div className="contact-info-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)', flexShrink: 0 }}>
+                  <Phone size={19} />
                 </div>
-                <div>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>CALL US</span>
-                  <a href="tel:5197295856" style={{ display: 'block', fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--color-text-primary)', textDecoration: 'none' }}>
+                <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, marginBottom: '0.1rem', color: 'var(--color-text-primary)', textAlign: 'left' }}>Phone Number</h4>
+                  <a href="tel:5197295856" style={{ fontSize: '0.95rem', color: 'var(--color-accent-primary)', fontWeight: 'bold', textDecoration: 'none', textAlign: 'left' }}>(519) 729-5856</a>
+                </div>
+              </div>
+
+              <div className="contact-info-item" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <div className="contact-info-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(22, 163, 74, 0.08)', color: '#16a34a', flexShrink: 0 }}>
+                  <MessageSquare size={19} />
+                </div>
+                <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, marginBottom: '0.1rem', color: 'var(--color-text-primary)', textAlign: 'left' }}>WhatsApp Us</h4>
+                  <a href="https://wa.me/15197295856" target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '0.95rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textDecoration: 'none', textAlign: 'left' }}>
                     (519) 729-5856
                   </a>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(22, 163, 74, 0.08)', color: '#16a34a' }}>
-                  <MessageSquare size={20} />
+              <div className="contact-info-item" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <div className="contact-info-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)', flexShrink: 0 }}>
+                  <Mail size={19} />
                 </div>
-                <div>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>WHATSAPP US</span>
-                  <a href="https://wa.me/15197295856" target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--color-text-primary)', textDecoration: 'none' }}>
-                    (519) 729-5856
-                  </a>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)' }}>
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>EMAIL US</span>
-                  <a href="mailto:info@ashinedetailing.com" style={{ display: 'block', fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--color-text-primary)', textDecoration: 'none' }}>
+                <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, marginBottom: '0.1rem', color: 'var(--color-text-primary)', textAlign: 'left' }}>Email Us</h4>
+                  <a href="mailto:info@ashinedetailing.com" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 'bold', color: 'var(--color-text-primary)', textDecoration: 'none', wordBreak: 'break-all', textAlign: 'left' }}>
                     info@ashinedetailing.com
                   </a>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)' }}>
-                  <MapPin size={20} />
+              <div className="contact-info-item" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <div className="contact-info-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)', flexShrink: 0 }}>
+                  <MapPin size={19} />
                 </div>
-                <div>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SERVICE AREA</span>
-                  <span style={{ display: 'block', fontSize: '0.95rem', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>
+                <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, marginBottom: '0.1rem', color: 'var(--color-text-primary)', textAlign: 'left' }}>Service Area</h4>
+                  <span style={{ display: 'block', fontSize: '0.88rem', fontWeight: 'bold', color: 'var(--color-text-primary)', lineHeight: '1.35', textAlign: 'left' }}>
                     54 Woodbine Avenue, Kitchener, Ont N2R 1V1
                   </span>
                 </div>
@@ -853,8 +1167,8 @@ export default function LandingPage() {
 
           {/* Right Column - Free Quote Form */}
           <div style={{ position: 'relative' }}>
-            <div className="glass-card" style={{ padding: '2.5rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 2 }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', marginBottom: '1.5rem', margin: 0 }}>
+            <div className="glass-card contact-form-card" style={{ padding: '2rem 1.75rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 2 }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', marginBottom: '1rem', margin: 0 }}>
                 Get a Free Quote
               </h3>
 
@@ -864,21 +1178,21 @@ export default function LandingPage() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    style={{ textAlign: 'center', paddingBlock: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}
+                    style={{ textAlign: 'center', paddingBlock: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}
                   >
-                    <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(22, 163, 74, 0.1)', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Check size={28} strokeWidth={3} />
+                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(22, 163, 74, 0.1)', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Check size={24} strokeWidth={3} />
                     </div>
-                    <h4 style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: 0 }}>Quote Request Sent!</h4>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', margin: 0 }}>Quote Request Sent!</h4>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', margin: 0, lineHeight: 1.5 }}>
                       Thank you! We have received your request and our detailing team will get back to you with a custom quote within 24 hours.
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleQuoteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '1.5rem' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                  <form onSubmit={handleQuoteSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginTop: '1rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
                       <div className="input-group">
-                        <label className="input-label input-label--required">Full Name</label>
+                        <label className="input-label input-label--required" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Full Name</label>
                         <input
                           type="text"
                           required
@@ -889,7 +1203,7 @@ export default function LandingPage() {
                         />
                       </div>
                       <div className="input-group">
-                        <label className="input-label input-label--required">Phone Number</label>
+                        <label className="input-label input-label--required" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Phone Number</label>
                         <input
                           type="tel"
                           required
@@ -901,9 +1215,9 @@ export default function LandingPage() {
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
                       <div className="input-group">
-                        <label className="input-label input-label--required">Email Address</label>
+                        <label className="input-label input-label--required" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Email Address</label>
                         <input
                           type="email"
                           required
@@ -914,19 +1228,7 @@ export default function LandingPage() {
                         />
                       </div>
                       <div className="input-group">
-                        <label className="input-label">Preferred Date</label>
-                        <input
-                          type="date"
-                          className="input-field"
-                          value={quoteForm.date}
-                          onChange={(e) => setQuoteForm({ ...quoteForm, date: e.target.value })}
-                        />
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-                      <div className="input-group">
-                        <label className="input-label">Vehicle Make & Model</label>
+                        <label className="input-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Vehicle Make & Model</label>
                         <input
                           type="text"
                           placeholder="e.g. Tesla Model 3"
@@ -935,39 +1237,30 @@ export default function LandingPage() {
                           onChange={(e) => setQuoteForm({ ...quoteForm, vehicle: e.target.value })}
                         />
                       </div>
-                      <div className="input-group">
-                        <label className="input-label">Year</label>
-                        <input
-                          type="number"
-                          placeholder="e.g. 2023"
-                          className="input-field"
-                          value={quoteForm.year}
-                          onChange={(e) => setQuoteForm({ ...quoteForm, year: e.target.value })}
-                        />
-                      </div>
                     </div>
 
                     <div className="input-group">
-                      <label className="input-label">Service Needed</label>
+                      <label className="input-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Service Needed</label>
                       <select
                         className="input-field"
-                        style={{ appearance: 'none', background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23475569\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M19 9l-7 7-7-7\'/%3E%3C/svg%3E") no-repeat right 1rem center / 1.2rem', paddingRight: '2.5rem' }}
+                        style={{ appearance: 'none', background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23e31b23\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2.5\' d=\'M19 9l-7 7-7-7\'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 0.85rem', paddingRight: '2rem' }}
                         value={quoteForm.service}
                         onChange={(e) => setQuoteForm({ ...quoteForm, service: e.target.value })}
                       >
                         <option value="">Select a package...</option>
-                        <option value="basic">Basic Detail ($149+)</option>
-                        <option value="premium">Premium Detail ($249+)</option>
-                        <option value="signature">Signature Detail ($399+)</option>
-                        <option value="ceramic">Ceramic Coating ($699+)</option>
-                        <option value="other">Other / Custom Details</option>
+                        <option value="interior-small">Small Car Interior ($100)</option>
+                        <option value="interior-suv">SUV 5-Seater Interior ($125)</option>
+                        <option value="interior-7seater">7-Seater / Large Interior ($150)</option>
+                        <option value="tire-wheel">Tire & Rim Care ($25 / Free)</option>
+                        <option value="commercial">Truck & Heavy Equipment</option>
+                        <option value="other">Other / Custom Request</option>
                       </select>
                     </div>
 
                     <div className="input-group">
-                      <label className="input-label">Additional Details (Optional)</label>
+                      <label className="input-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>Additional Details (Optional)</label>
                       <textarea
-                        rows={3}
+                        rows={2}
                         placeholder="Tell us more about your vehicle type, condition, or specific requests..."
                         className="input-field"
                         style={{ resize: 'vertical' }}
@@ -987,7 +1280,7 @@ export default function LandingPage() {
                       type="submit"
                       className="btn btn--primary btn--lg"
                       disabled={quoteLoading}
-                      style={{ borderRadius: '6px', marginTop: '0.5rem', opacity: quoteLoading ? 0.75 : 1, cursor: quoteLoading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+                      style={{ borderRadius: '8px', paddingBlock: '0.75rem', fontSize: '0.85rem', marginTop: '0.25rem', opacity: quoteLoading ? 0.75 : 1, cursor: quoteLoading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
                     >
                       {quoteLoading ? (
                         <>
@@ -1014,83 +1307,91 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="footer" style={{ background: '#0a0f1d', borderTop: '1px solid rgba(255,255,255,0.06)', paddingBlock: 'var(--space-20) var(--space-8)', color: '#94a3b8' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-12)', marginBottom: 'var(--space-12)' }}>
+      <footer className="footer" style={{ background: '#0a0f1d', borderTop: '1px solid rgba(255,255,255,0.06)', paddingBlock: 'var(--space-16) var(--space-6)', color: '#94a3b8' }}>
+        <div className="container footer-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-10)', marginBottom: 'var(--space-8)' }}>
 
           {/* Column 1 - Brand */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-accent-primary)', color: 'white', borderRadius: '4px', width: '32px', height: '32px', fontWeight: 900, fontSize: '1.2rem' }}>
+          <div className="footer-col footer-col--brand" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-accent-primary)', color: 'white', borderRadius: '6px', width: '34px', height: '34px', fontWeight: 900, fontSize: '1.1rem', flexShrink: 0 }}>
                 A
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-                <span style={{ fontSize: '1.15rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>A-SHINE</span>
-                <span style={{ fontSize: '0.45rem', fontWeight: 600, color: '#64748b', letterSpacing: '0.15em' }}>AUTO VEHICLE DETAILING</span>
+              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
+                <span style={{ fontSize: '1.05rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>A-SHINE</span>
+                <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#cbd5e1', letterSpacing: '0.12em', marginTop: '0.1rem' }}>AUTO VEHICLE DETAILING</span>
               </div>
             </Link>
-            <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6', margin: 0 }}>
-              Premium mobile auto detailing services. We bring showroom quality right to your doorstep, with unmatched focus and care.
+            <p style={{ fontSize: '0.82rem', color: '#e2e8f0', lineHeight: '1.5', margin: 0 }}>
+              Interior deep shampooing & high-gloss tire care. Showroom fresh results at your doorstep.
             </p>
-            {/* Social handles mockup */}
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-              {['facebook', 'instagram', 'youtube'].map((social) => (
-                <span key={social} style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#64748b', cursor: 'pointer', textTransform: 'capitalize' }}>
-                  {social}
+            {/* Social handles */}
+            <div style={{ display: 'flex', gap: '0', alignItems: 'center' }}>
+              {['Facebook', 'Instagram', 'TikTok'].map((social, i) => (
+                <span key={social} style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', cursor: 'pointer' }}>{social}</span>
+                  {i < 2 && <span style={{ color: '#475569', margin: '0 0.5rem', fontSize: '0.5rem' }}>•</span>}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Column 2 - Quick links */}
-          <div>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 'bold', color: 'white', marginBottom: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Quick Links</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', padding: 0, margin: 0 }}>
-              <li><Link href="#" style={{ color: '#64748b', fontSize: '0.85rem' }}>Home</Link></li>
-              <li><a href="#services" style={{ color: '#64748b', fontSize: '0.85rem' }}>Services</a></li>
-              <li><a href="#about" style={{ color: '#64748b', fontSize: '0.85rem' }}>About Us</a></li>
-              <li><a href="#gallery" style={{ color: '#64748b', fontSize: '0.85rem' }}>Gallery</a></li>
-              <li><a href="#reviews" style={{ color: '#64748b', fontSize: '0.85rem' }}>Reviews</a></li>
-              <li><a href="#pricing" style={{ color: '#64748b', fontSize: '0.85rem' }}>Pricing</a></li>
-              <li><a href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Contact</a></li>
-            </ul>
-          </div>
+          {/* Links row — Quick Links left, Services+Hours right */}
+          <div className="footer-links-row">
 
-          {/* Column 3 - Services links */}
-          <div>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 'bold', color: 'white', marginBottom: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Services</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', padding: 0, margin: 0 }}>
-              <li><Link href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Exterior Detailing</Link></li>
-              <li><Link href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Interior Detailing</Link></li>
-              <li><Link href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Paint Correction</Link></li>
-              <li><Link href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Ceramic Coating</Link></li>
-              <li><Link href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Wheel & Tire Detailing</Link></li>
-              <li><Link href="#contact" style={{ color: '#64748b', fontSize: '0.85rem' }}>Engine Bay Detailing</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 4 - Hours & CTA */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 'bold', color: 'white', marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Business Hours</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.85rem', color: '#64748b' }}>
-              <span>Monday - Friday: 8:00 AM - 8:00 PM</span>
-              <span>Saturday: 9:00 AM - 6:00 PM</span>
-              <span>Sunday: 10:00 AM - 4:00 PM</span>
+            {/* Quick Links */}
+            <div className="footer-col footer-col-left">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><Link href="#" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Home</Link></li>
+                <li><a href="#services" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Services</a></li>
+                <li><a href="#about" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>About Us</a></li>
+                <li><a href="#gallery" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Gallery</a></li>
+                <li><a href="#reviews" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Reviews</a></li>
+                <li><a href="#pricing" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Pricing</a></li>
+                <li><a href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Contact</a></li>
+              </ul>
             </div>
-            <a href="#contact" className="btn btn--primary" style={{ borderRadius: '6px', alignSelf: 'flex-start', marginTop: '0.5rem' }}>
-              BOOK NOW →
-            </a>
+
+            {/* Right — Services + Hours stacked */}
+            <div className="footer-col-right">
+
+              <div className="footer-col">
+                <h4>Services</h4>
+                <ul>
+                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Interior Shampooing</Link></li>
+                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Steam & Salt Extraction</Link></li>
+                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Spill & Stain Cleaning</Link></li>
+                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Tire & Rim Detailing</Link></li>
+                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Truck & Commercial</Link></li>
+                </ul>
+              </div>
+
+              <div className="footer-col">
+                <h4>Hours</h4>
+                <ul style={{ gap: '0.3rem' }}>
+                  <li style={{ color: '#e2e8f0', fontSize: '0.72rem' }}>Mon–Fri: 8AM–8PM</li>
+                  <li style={{ color: '#e2e8f0', fontSize: '0.72rem' }}>Saturday: 9AM–6PM</li>
+                  <li style={{ color: '#e2e8f0', fontSize: '0.72rem' }}>Sunday: 10AM–4PM</li>
+                </ul>
+                <a href="#contact" className="btn btn--primary footer-cta-btn">
+                  BOOK NOW →
+                </a>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
 
         {/* Footer Bottom */}
-        <div className="container" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: '3rem', paddingTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+        <div className="container footer-bottom" style={{ marginTop: '1.5rem', paddingTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <span style={{ fontSize: '0.75rem', color: '#94a3b8', textAlign: 'center' }}>
             © 2026 A-SHINE Auto Vehicle Detailing. All rights reserved.
           </span>
-          <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.75rem' }}>
-            <span style={{ color: '#64748b', cursor: 'pointer' }}>Privacy Policy</span>
-            <span style={{ color: '#64748b', cursor: 'pointer' }}>Terms of Service</span>
+          <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem' }}>
+            <span style={{ color: '#cbd5e1', cursor: 'pointer' }}>Privacy Policy</span>
+            <span style={{ color: '#cbd5e1', cursor: 'pointer' }}>Terms of Service</span>
           </div>
         </div>
       </footer>

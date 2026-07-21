@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, phone, email, date, vehicle, year, service, details } = body;
+    const { name, phone, email, vehicle, service, details } = body;
 
     // Basic server-side validation
     if (!name || !phone || !email) {
@@ -26,9 +26,7 @@ export async function POST(request: NextRequest) {
     formData.append('name',    name    ?? '');
     formData.append('phone',   phone   ?? '');
     formData.append('email',   email   ?? '');
-    formData.append('date',    date    ?? '');
     formData.append('vehicle', vehicle ?? '');
-    formData.append('year',    year    ?? '');
     formData.append('service', service ?? '');
     formData.append('details', details ?? '');
 
