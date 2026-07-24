@@ -14,8 +14,8 @@ export const SERVICES: Service[] = [
   {
     id: 'interior-small',
     name: 'Full Interior Shampoo (Small Car)',
-    description: 'Complete interior deep clean & shampooing for sedans & coupes. Includes seats, carpets, dashboard, vents, door jambs, trunk & tire cleaning.',
-    features: ['Seat shampooing & stain removal', 'Deep carpet extraction & salt removal', 'Dashboard, console & vents sanitized', 'Trunk & door jambs cleaned', 'Tire & rim deep clean with tire dressing'],
+    description: 'Complete interior deep clean & shampooing for sedans & coupes. Includes seats, carpets, dashboard, vents, door jambs, and trunk.',
+    features: ['Seat shampooing & stain removal', 'Deep carpet extraction & salt removal', 'Dashboard, console & vents sanitized', 'Trunk & door jambs cleaned'],
     price: 10000,
     duration: 90,
     icon: '🧽',
@@ -24,8 +24,8 @@ export const SERVICES: Service[] = [
   {
     id: 'interior-suv',
     name: 'Full Interior Shampoo (5-Seater SUV)',
-    description: 'Deep interior shampooing & sanitization for 5-seater SUVs & crossovers. Includes seats, carpets, trunk & tire cleaning.',
-    features: ['Seat & carpet deep shampooing', 'Steam cleansing & winter salt extraction', 'Dashboard, console & cup holders', 'Trunk & door jambs detailed', 'Tire & rim deep clean with high-gloss dressing'],
+    description: 'Deep interior shampooing & sanitization for 5-seater SUVs & crossovers. Includes seats, carpets, and trunk.',
+    features: ['Seat & carpet deep shampooing', 'Steam cleansing & winter salt extraction', 'Dashboard, console & cup holders', 'Trunk & door jambs detailed'],
     price: 12500,
     duration: 120,
     icon: '🚙',
@@ -34,21 +34,12 @@ export const SERVICES: Service[] = [
   {
     id: 'interior-7seater',
     name: 'Full Interior Shampoo (7-Seater / Large)',
-    description: 'Full interior deep clean & shampooing for 7-seaters, 3-row SUVs, minivans & trucks. Includes tire & rim cleaning.',
-    features: ['All 3 rows seat shampooing', 'Deep carpet & mat salt removal', 'Dashboard, console & climate controls', 'Spill & stain extraction', 'Tire & rim deep clean with glossy shine'],
+    description: 'Full interior deep clean & shampooing for 7-seaters, 3-row SUVs, minivans & trucks.',
+    features: ['All 3 rows seat shampooing', 'Deep carpet & mat salt removal', 'Dashboard, console & climate controls', 'Spill & stain extraction'],
     price: 15000,
     duration: 150,
     icon: '🚐',
     popular: true,
-  },
-  {
-    id: 'tire-wheel',
-    name: 'Tire & Rim Deep Cleaning',
-    description: 'Dedicated rim brake dust removal, wheel scrub, and long-lasting high-gloss tire dressing.',
-    features: ['Deep wheel & rim brake dust removal', 'Tire sidewall scrub & shine', 'High-gloss protective tire dressing', 'Included complimentary with interior packages'],
-    price: 2500,
-    duration: 30,
-    icon: '🛞',
   },
 ];
 

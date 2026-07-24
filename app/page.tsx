@@ -164,36 +164,33 @@ export default function LandingPage() {
     <main style={{ background: 'var(--color-bg-primary)', color: 'var(--color-text-primary)' }}>
       {/* Navigation */}
       <nav className={`nav ${isScrolled ? 'nav--scrolled' : ''}`} style={{ borderBottom: isScrolled ? '1px solid var(--glass-border)' : '1px solid transparent' }}>
-        <div className="nav__inner container" style={{ paddingBlock: '0.5rem' }}>
+        <div className="nav__inner container" style={{ paddingBlock: '0.25rem' }}>
           {/* Logo */}
           <Link href="/" className="nav__logo" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-accent-primary)', color: 'white', borderRadius: '6px', width: '38px', height: '38px', fontWeight: 900, fontSize: '1.4rem', fontFamily: 'var(--font-heading)' }}>
-              A
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '46px', height: '46px', flexShrink: 0 }}>
+              <img src="/a-logosvgmaker-editor.svg" alt="A-Shine Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
               <span style={{ fontSize: '1.35rem', fontWeight: 900, color: 'var(--color-accent-secondary)', letterSpacing: '-0.02em' }}>A-SHINE</span>
-              <span style={{ fontSize: '0.6rem', fontWeight: 700, color: 'var(--color-text-secondary)', letterSpacing: '0.15em' }}>AUTO VEHICLE DETAILING</span>
+              <span style={{ fontSize: '0.62rem', fontWeight: 700, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '0.1rem' }} className="logo-subtitle">Auto Mobile Detailing</span>
             </div>
           </Link>
 
           {/* Links */}
           <div className="nav__links" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-            <Link href="#" className="nav__link">Home</Link>
             <Link href="#services" className="nav__link">Services</Link>
             <Link href="#about" className="nav__link">About Us</Link>
             <Link href="#gallery" className="nav__link">Gallery</Link>
-            <Link href="#reviews" className="nav__link">Reviews</Link>
             <Link href="#pricing" className="nav__link">Pricing</Link>
-            <Link href="#contact" className="nav__link">Contact</Link>
           </div>
 
           {/* Call & Button */}
-          <div className="nav__actions" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <a href="tel:5197295856" className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-primary)', fontWeight: 700, fontSize: 'var(--text-sm)' }}>
-              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)' }}>
-                <Phone size={16} />
+          <div className="nav__actions" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            <a href="tel:5197295856" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-primary)', fontWeight: 700, fontSize: 'var(--text-sm)', textDecoration: 'none' }} aria-label="Call A-Shine Auto Mobile Detailing">
+              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '34px', height: '34px', borderRadius: '50%', background: 'rgba(227, 27, 35, 0.08)', color: 'var(--color-accent-primary)', transition: 'all 0.2s', flexShrink: 0 }} onMouseOver={(e) => { e.currentTarget.style.background = 'var(--color-accent-primary)'; e.currentTarget.style.color = '#fff'; }} onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(227, 27, 35, 0.08)'; e.currentTarget.style.color = 'var(--color-accent-primary)'; }}>
+                <Phone size={15} />
               </span>
-              (519) 729-5856
+              <span className="nav-phone-text">(519) 729-5856</span>
             </a>
             <a href="#contact" className="btn btn--primary" style={{ display: 'flex', borderRadius: '6px' }}>
               BOOK NOW
@@ -218,20 +215,17 @@ export default function LandingPage() {
             <div className="mobile-menu" style={{ background: 'var(--color-bg-primary)' }}>
               <div className="mobile-menu__header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-accent-primary)', color: 'white', borderRadius: '4px', width: '28px', height: '28px', fontWeight: 900, fontSize: '1.1rem' }}>
-                    A
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', flexShrink: 0 }}>
+                    <img src="/a-logosvgmaker-editor.svg" alt="A-Shine Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <span style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>A-SHINE</span>
                 </div>
                 <button onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'var(--color-text-primary)' }}><X /></button>
               </div>
-              <Link href="#" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
               <Link href="#services" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
               <Link href="#about" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
               <Link href="#gallery" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
-              <Link href="#reviews" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Reviews</Link>
               <Link href="#pricing" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
-              <Link href="#contact" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
               <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem', marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 <a href="tel:5197295856" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-accent-primary)', textDecoration: 'none' }}>
                   <Phone size={16} /> (519) 729-5856
@@ -282,8 +276,8 @@ export default function LandingPage() {
               Drive with Pride.
             </motion.h1>
 
-            <motion.p variants={fadeIn} className="hero-description" style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-base)', lineHeight: '1.6', maxWidth: '550px' }}>
-              Experience premium mobile auto detailing brought directly to your doorstep. Specializing strictly in complete interior deep shampooing and high-gloss tire & wheel cleaning to bring back that spotless showroom feeling.
+            <motion.p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
+              Experience premium mobile auto detailing brought directly to your doorstep. Specializing strictly in complete interior deep shampooing, steam sanitization, and stain extraction to bring back that spotless showroom feeling.
             </motion.p>
 
             <motion.div variants={fadeIn} className="hero-cta-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
@@ -365,8 +359,8 @@ export default function LandingPage() {
                   <Shield size={18} />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Tire & Rim Detailing</h4>
-                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>High Gloss Protection</p>
+                  <h4 style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#0f172a', margin: 0, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>Leather & Trim Care</h4>
+                  <p style={{ fontSize: '0.65rem', color: '#64748b', margin: 0 }}>Cleaned & Conditioned</p>
                 </div>
               </div>
 
@@ -401,10 +395,10 @@ export default function LandingPage() {
           <div className="section-header" style={{ marginBottom: '2rem' }}>
             <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>SPECIALIZED SERVICES</span>
             <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
-              Complete Interior <span style={{ color: 'var(--color-accent-primary)' }}>& Tire Detailing</span>
+              Complete Interior <span style={{ color: 'var(--color-accent-primary)' }}>Shampoo & Detailing</span>
             </h2>
             <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '650px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
-              We specialize exclusively in deep interior shampooing, steam sanitization, winter salt extraction, food spill cleanup, and high-gloss tire care.
+              We specialize exclusively in deep interior shampooing, steam sanitization, winter salt extraction, and food spill cleanup.
             </p>
           </div>
 
@@ -420,7 +414,7 @@ export default function LandingPage() {
               { img: '/service-ai-interior.png', icon: '🧽', title: 'Full Interior Shampooing', desc: 'Deep shampooing and stain extraction for cloth & leather seats, carpets, dashboard, vents, console, door jambs, and trunk.', pos: 'center 45%' },
               { img: '/service-ai-steam.png', icon: '🧼', title: 'Steam Cleansing & Salt Removal', desc: 'High-temperature steam cleansing that dissolves embedded winter salt, grime, bacteria, and stubborn floor mat stains.', pos: 'center 50%' },
               { img: '/service-ai-stain.png', icon: '✨', title: 'Seat Stain & Spill Extraction', desc: 'Specialized hot-water extraction and conditioning for accidental food, drink, or pet spills on seats and carpets.', pos: 'center 50%' },
-              { img: '/service-ai-tire.png', icon: '🛞', title: 'Tire & Rim Deep Cleaning', desc: 'Thorough rim brake dust removal, wheel well scrub, and long-lasting UV-protective high-gloss tire dressing.', pos: 'center 45%' },
+              { img: '/service-ai-odor.png', icon: '💨', title: 'Odor & Air Sanitization', desc: 'Complete cabin deodorization and sanitization using ozone therapy and thermal steam to destroy bacteria, smoke, and mold odors.', pos: 'center 50%' },
               { img: '/service-ai-truck.png', icon: '🚛', title: 'Truck & Commercial Cabs', desc: 'Professional mobile interior detailing for semi-trucks, dump trucks, loaders, and commercial vehicle cabs.', pos: 'center 45%' },
               { img: '/service-ai-mobile.png', icon: '🏠', title: 'Mobile or Studio Drop-off', desc: 'We bring our full mobile unit directly to your driveway, or you can drop off your vehicle at our home studio.', pos: 'center 50%' }
             ].map((srv, i) => (
@@ -524,8 +518,8 @@ export default function LandingPage() {
             <h2 style={{ fontSize: 'var(--text-3xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', lineHeight: '1.2' }}>
               We Don't Just Detail Cars.<br />We Care For Them Like Our <span style={{ color: 'var(--color-accent-primary)' }}>Own</span>.
             </h2>
-            <p style={{ color: 'var(--color-text-secondary)', lineHeight: '1.6', fontSize: 'var(--text-base)' }}>
-              A-Shine Auto Mobile Detailing is operated by Kulwant Sandhi with a deep passion for auto detailing. Specializing exclusively in complete interior shampooing, winter salt extraction, food spill cleanup, and tire/wheel detailing — delivering spotless, showroom-level care with honest pricing.
+            <p className="about-text" style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', lineHeight: '1.7', marginBottom: '1.5rem', textAlign: 'left' }}>
+              A-Shine Auto Mobile Detailing is operated by Kulwant Sandhi with a deep passion for auto detailing. Specializing exclusively in complete interior shampooing, winter salt extraction, and food spill cleanup — delivering spotless, showroom-level care with honest pricing.
             </p>
 
             {/* Checklist */}
@@ -666,7 +660,7 @@ export default function LandingPage() {
               { src: '/gallery-audi-interior.png',   label: 'Interior Deep Clean' },
               { src: '/gallery-audi-q5.jpg',         label: 'Full Interior & Exterior' },
               { src: '/gallery-tesla-modelx.jpg',    label: 'Full Vehicle Detailing' },
-              { src: '/gallery-mercedes-engine.jpg', label: 'Interior & Rim Detailing' },
+              { src: '/gallery-mercedes-engine.jpg', label: 'Leather & Vinyl Conditioning' },
             ].map((item, i) => (
               <div
                 key={`r1-${i}`}
@@ -705,7 +699,7 @@ export default function LandingPage() {
               { src: '/gallery-audi-interior.png',   label: 'Interior Deep Clean' },
               { src: '/gallery-audi-q5.jpg',         label: 'Full Interior & Exterior' },
               { src: '/gallery-tesla-modelx.jpg',    label: 'Full Vehicle Detailing' },
-              { src: '/gallery-mercedes-engine.jpg', label: 'Interior & Rim Detailing' },
+              { src: '/gallery-mercedes-engine.jpg', label: 'Leather & Vinyl Conditioning' },
             ].map((item, i) => (
               <div
                 key={`r2-${i}`}
@@ -932,29 +926,6 @@ export default function LandingPage() {
               </Link>
             </div>
 
-            {/* Tire & Rim Package */}
-            <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
-              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TIRE & RIM CARE</span>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Deep brake dust cleaning & glossy tire shine.</p>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$25</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>OR FREE WITH INTERIOR</span>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Complete Wheel Care:</span>
-                {['Heavy Brake Dust & Dirt Removal', 'Deep Rim & Caliper Surface Scrub', 'Tire Sidewall Cleansing & Prep', 'High-Gloss UV Protective Tire Dressing', 'Included FREE with any Interior Shampoo', 'Standalone Tire & Rim Detailing Service'].map((feat, i) => (
-                  <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
-                    <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
-                BOOK TIRE CARE →
-              </Link>
-            </div>
 
           </div>
 
@@ -963,7 +934,7 @@ export default function LandingPage() {
 
             {/* Middle Left Arrow */}
             <button
-              onClick={() => setActivePriceIdx(prev => (prev > 0 ? prev - 1 : 3))}
+              onClick={() => setActivePriceIdx(prev => (prev > 0 ? prev - 1 : 2))}
               style={{ position: 'absolute', left: '-6px', top: '52%', transform: 'translateY(-50%)', zIndex: 10, width: '38px', height: '38px', borderRadius: '50%', background: 'var(--color-accent-primary)', color: '#ffffff', border: '2px solid #ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(227, 27, 35, 0.35)', cursor: 'pointer' }}
               aria-label="Previous Package"
             >
@@ -972,7 +943,7 @@ export default function LandingPage() {
 
             {/* Middle Right Arrow */}
             <button
-              onClick={() => setActivePriceIdx(prev => (prev < 3 ? prev + 1 : 0))}
+              onClick={() => setActivePriceIdx(prev => (prev < 2 ? prev + 1 : 0))}
               style={{ position: 'absolute', right: '-6px', top: '52%', transform: 'translateY(-50%)', zIndex: 10, width: '38px', height: '38px', borderRadius: '50%', background: 'var(--color-accent-primary)', color: '#ffffff', border: '2px solid #ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(227, 27, 35, 0.35)', cursor: 'pointer' }}
               aria-label="Next Package"
             >
@@ -982,10 +953,10 @@ export default function LandingPage() {
             {/* Indicator Dots Bar */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', marginBottom: '0.75rem' }}>
               <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                PACKAGE {activePriceIdx + 1} OF 4
+                PACKAGE {activePriceIdx + 1} OF 3
               </span>
               <div style={{ display: 'flex', gap: '6px' }}>
-                {[0, 1, 2, 3].map((dotIdx) => (
+                {[0, 1, 2].map((dotIdx) => (
                   <button
                     key={dotIdx}
                     onClick={() => setActivePriceIdx(dotIdx)}
@@ -1079,28 +1050,7 @@ export default function LandingPage() {
                   </div>
                 )}
 
-                {activePriceIdx === 3 && (
-                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
-                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TIRE & RIM CARE</span>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>Deep brake dust cleaning & glossy tire shine.</p>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
-                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$25</span>
-                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>OR FREE WITH INTERIOR</span>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
-                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Complete Wheel Care:</span>
-                      {['Heavy Brake Dust & Dirt Removal', 'Deep Rim & Caliper Surface Scrub', 'Tire Sidewall Cleansing & Prep', 'High-Gloss UV Protective Tire Dressing', 'Included FREE with any Interior Shampoo', 'Standalone Tire & Rim Detailing Service'].map((feat, i) => (
-                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
-                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
-                      BOOK TIRE CARE →
-                    </Link>
-                  </div>
-                )}
+
               </motion.div>
             </AnimatePresence>
           </div>
@@ -1280,7 +1230,6 @@ export default function LandingPage() {
                         <option value="interior-small">Small Car Interior ($100)</option>
                         <option value="interior-suv">SUV 5-Seater Interior ($125)</option>
                         <option value="interior-7seater">7-Seater / Large Interior ($150)</option>
-                        <option value="tire-wheel">Tire & Rim Care ($25 / Free)</option>
                         <option value="commercial">Truck & Heavy Equipment</option>
                         <option value="other">Other / Custom Request</option>
                       </select>
@@ -1342,22 +1291,45 @@ export default function LandingPage() {
           {/* Column 1 - Brand */}
           <div className="footer-col footer-col--brand" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-accent-primary)', color: 'white', borderRadius: '6px', width: '34px', height: '34px', fontWeight: 900, fontSize: '1.1rem', flexShrink: 0 }}>
-                A
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#ffffff',
+                borderRadius: '8px',
+                width: '38px',
+                height: '38px',
+                padding: '4px',
+                flexShrink: 0
+              }}>
+                <img src="/a-logosvgmaker-editor.svg" alt="A-Shine Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
                 <span style={{ fontSize: '1.05rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>A-SHINE</span>
-                <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#cbd5e1', letterSpacing: '0.12em', marginTop: '0.1rem' }}>AUTO VEHICLE DETAILING</span>
+                <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#cbd5e1', letterSpacing: '0.12em', marginTop: '0.1rem' }}>AUTO MOBILE DETAILING</span>
               </div>
             </Link>
             <p style={{ fontSize: '0.82rem', color: '#e2e8f0', lineHeight: '1.5', margin: 0 }}>
-              Interior deep shampooing & high-gloss tire care. Showroom fresh results at your doorstep.
+              Interior deep shampooing & steam sanitization. Showroom fresh results at your doorstep.
             </p>
             {/* Social handles */}
             <div style={{ display: 'flex', gap: '0', alignItems: 'center' }}>
-              {['Facebook', 'Instagram', 'TikTok'].map((social, i) => (
-                <span key={social} style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', cursor: 'pointer' }}>{social}</span>
+              {[
+                { name: 'Facebook', url: 'https://www.facebook.com/people/A-shine-Automobile-Detailing/61580395624520/#' },
+                { name: 'Instagram', url: 'https://www.instagram.com/ashineautomobiledetailing/' },
+                { name: 'TikTok', url: '#' }
+              ].map((social, i) => (
+                <span key={social.name} style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = 'var(--color-accent-primary)')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = '#cbd5e1')}
+                  >
+                    {social.name}
+                  </a>
                   {i < 2 && <span style={{ color: '#475569', margin: '0 0.5rem', fontSize: '0.5rem' }}>•</span>}
                 </span>
               ))}
@@ -1390,7 +1362,7 @@ export default function LandingPage() {
                   <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Interior Shampooing</Link></li>
                   <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Steam & Salt Extraction</Link></li>
                   <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Spill & Stain Cleaning</Link></li>
-                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Tire & Rim Detailing</Link></li>
+                  <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Leather & Fabric Care</Link></li>
                   <li><Link href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Truck & Commercial</Link></li>
                 </ul>
               </div>
@@ -1416,7 +1388,7 @@ export default function LandingPage() {
         {/* Footer Bottom */}
         <div className="container footer-bottom" style={{ marginTop: '1.5rem', paddingTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <span style={{ fontSize: '0.75rem', color: '#94a3b8', textAlign: 'center' }}>
-            © 2026 A-SHINE Auto Vehicle Detailing. All rights reserved.
+            © 2026 A-SHINE Auto Mobile Detailing. All rights reserved.
           </span>
           <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem' }}>
             <span style={{ color: '#cbd5e1', cursor: 'pointer' }}>Privacy Policy</span>

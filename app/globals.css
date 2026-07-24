@@ -2759,3 +2759,13 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.5rem !important;
   }
 }
+
+/* ---------- Responsive Navigation Customizations ---------- */
+@media (max-width: 768px) {
+  .logo-subtitle {
+    display: none !important;
+  }
+  .nav-phone-text {
+    display: none !important;
+  }
+}

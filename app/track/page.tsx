@@ -50,10 +50,10 @@ export default function TrackPage() {
   return (
     <main className="tracker-page min-h-screen bg-[var(--background)] flex flex-col items-center pt-24 pb-12 px-4">
       {/* Simplified Nav */}
-      <nav className="fixed top-0 left-0 right-0 p-6 flex justify-between items-center max-w-6xl mx-auto z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 py-4 px-6 flex justify-between items-center max-w-6xl mx-auto z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-accent-primary)', color: 'white', borderRadius: '4px', width: '28px', height: '28px', fontWeight: 900, fontSize: '1.1rem' }}>
-            A
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', flexShrink: 0 }}>
+            <img src="/a-logosvgmaker-editor.svg" alt="A-Shine Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <span style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--color-accent-secondary)', letterSpacing: '-0.02em' }}>A-SHINE</span>
         </Link>
