@@ -19,8 +19,9 @@
 
 function doPost(e) {
   try {
-    // Acquire the active sheet
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    // Open the spreadsheet by its ID and select the active sheet
+    var ss = SpreadsheetApp.openById("1EeJmuN0VVGmTRdTnlKxdoBAf0c6LOKAoCtzpfx1mxj4");
+    var sheet = ss.getActiveSheet() || ss.getSheets()[0];
     
     // Parse form parameters sent by the Next.js server
     var name = e.parameter.name || "";
