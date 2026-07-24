@@ -23,13 +23,40 @@ function doPost(e) {
     var ss = SpreadsheetApp.openById("1EeJmuN0VVGmTRdTnlKxdoBAf0c6LOKAoCtzpfx1mxj4");
     var sheet = ss.getActiveSheet() || ss.getSheets()[0];
     
-    // Parse form parameters sent by the Next.js server
-    var name = e.parameter.name || "";
-    var phone = e.parameter.phone || "";
-    var email = e.parameter.email || "";
-    var vehicle = e.parameter.vehicle || "";
-    var service = e.parameter.service || "";
-    var details = e.parameter.details || "";
+    // Initialize default fields
+    var name = "";
+    var phone = "";
+    var email = "";
+    var vehicle = "";
+    var service = "";
+    var details = "";
+    
+    // 1. Try parsing JSON body if sent as text/plain (direct from client)
+    if (e && e.postData && e.postData.contents) {
+      try {
+        var data = JSON.parse(e.postData.contents);
+        name = data.name || "";
+        phone = data.phone || "";
+        email = data.email || "";
+        // Support both "car" and "vehicle" keys from the frontend payload
+        vehicle = data.car || data.vehicle || "";
+        service = data.service || "";
+        // Support both "message" and "details" keys from the frontend payload
+        details = data.message || data.details || "";
+      } catch (jsonError) {
+        // Fallback to URL-encoded parsing if JSON parsing fails
+      }
+    }
+    
+    // 2. If fields are still empty, try parsing from URL-encoded form parameters
+    if (!name && e && e.parameter) {
+      name = e.parameter.name || "";
+      phone = e.parameter.phone || "";
+      email = e.parameter.email || "";
+      vehicle = e.parameter.car || e.parameter.vehicle || "";
+      service = e.parameter.service || "";
+      details = e.parameter.message || e.parameter.details || "";
+    }
     
     // Create timestamp
     var timestamp = new Date();
