@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Menu, X, Sparkles, Star, Calendar, ChevronLeft, ChevronRight,
-  MapPin, Phone, Mail, Clock, ArrowRight, Shield, Check, MessageSquare
+  Menu, X, Sparkles, Star, Calendar, ChevronLeft, ChevronRight, ChevronDown,
+  MapPin, Phone, Mail, Clock, ArrowRight, Shield, Check, MessageSquare, HelpCircle
 } from 'lucide-react';
 
 // Before/After interactive slider component
@@ -92,6 +92,7 @@ export default function LandingPage() {
   const [quoteLoading, setQuoteLoading] = useState(false);
   const [quoteError, setQuoteError] = useState('');
   const [activePriceIdx, setActivePriceIdx] = useState(1);
+  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -182,6 +183,7 @@ export default function LandingPage() {
             <Link href="#about" className="nav__link">About Us</Link>
             <Link href="#gallery" className="nav__link">Gallery</Link>
             <Link href="#pricing" className="nav__link">Pricing</Link>
+            <Link href="#faq" className="nav__link">FAQ</Link>
           </div>
 
           {/* Call & Button */}
@@ -226,6 +228,7 @@ export default function LandingPage() {
               <Link href="#about" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
               <Link href="#gallery" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
               <Link href="#pricing" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link>
+              <Link href="#faq" className="mobile-menu__link" onClick={() => setIsMobileMenuOpen(false)}>FAQ</Link>
               <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem', marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 <a href="tel:5197295856" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-accent-primary)', textDecoration: 'none' }}>
                   <Phone size={16} /> (519) 729-5856
@@ -1077,6 +1080,180 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="section" style={{ paddingBlock: '4.5rem' }}>
+        <div className="container" style={{ maxWidth: '880px' }}>
+          <div className="section-header" style={{ marginBottom: '2.5rem' }}>
+            <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>FREQUENTLY ASKED QUESTIONS</span>
+            <h2 className="section-title" style={{ fontSize: 'var(--text-4xl)', fontWeight: 900, color: 'var(--color-accent-secondary)', textTransform: 'uppercase' }}>
+              Got <span style={{ color: 'var(--color-accent-primary)' }}>Questions?</span>
+            </h2>
+            <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
+              Everything you need to know about our interior detailing services. Can&apos;t find your answer? Give us a call.
+            </p>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+          >
+            {[
+              {
+                q: 'What exactly is included in a full interior shampoo?',
+                a: 'Our full interior shampoo covers every surface inside your vehicle — all seats (cloth or leather), carpets, floor mats, dashboard, centre console, cup holders, air vents, door panels, door jambs, and the trunk. We use hot-water extraction, steam cleansing, and professional-grade shampoo to deep-clean and sanitize everything.'
+              },
+              {
+                q: 'How long does a typical interior detailing session take?',
+                a: 'Most sessions take between 2 to 4 hours depending on the size and condition of your vehicle. Heavily soiled interiors, pet hair removal, or deep stain extraction may add extra time. We never rush — your vehicle gets the full treatment it needs.'
+              },
+              {
+                q: 'Do you offer mobile service or do I need to drop off my car?',
+                a: 'Both! We bring our fully equipped mobile unit right to your driveway, workplace, or any convenient location. You can also drop off your vehicle at our home studio at 54 Woodbine Avenue, Kitchener. Whichever option works best for you.'
+              },
+              {
+                q: 'What areas do you serve?',
+                a: 'We serve Kitchener, Waterloo, Cambridge, Guelph, and surrounding areas in the Tri-Cities region. For locations slightly outside our usual range, just give us a call and we\'ll do our best to accommodate you.'
+              },
+              {
+                q: 'Can you remove tough stains like coffee, food spills, or pet accidents?',
+                a: 'Absolutely. We specialize in stain extraction using hot-water extraction equipment and professional cleaning solutions. Coffee, juice, food, pet accidents, ink, and even stubborn winter salt stains — we tackle them all. Results depend on the age and severity of the stain, but most come out completely.'
+              },
+              {
+                q: 'Is your steam cleaning safe for leather seats?',
+                a: 'Yes! Our steam cleansing is gentle yet effective on leather. We use controlled low-moisture steam that sanitizes and lifts dirt without over-saturating the material. After steam cleaning, we apply a leather conditioner to keep your seats soft, hydrated, and protected.'
+              },
+              {
+                q: 'How do I book an appointment?',
+                a: 'You can book by calling us at (519) 729-5856, sending a WhatsApp message to the same number, or filling out the free quote form on this page. We\'ll get back to you within 24 hours with availability and a confirmed appointment time.'
+              },
+              {
+                q: 'Do you detail trucks and commercial vehicles?',
+                a: 'Yes, we do! We service semi-trucks, dump trucks, loaders, commercial vans, and other heavy equipment cabs. Our mobile unit is fully equipped to handle commercial vehicle interiors with the same deep-cleaning quality.'
+              },
+              {
+                q: 'What if it rains on the day of my mobile appointment?',
+                a: 'Light rain usually isn\'t an issue since we work primarily on interiors and can set up with cover. However, for heavy rain or severe weather, we\'ll reach out to reschedule at no extra charge. We want to ensure the best results for your vehicle.'
+              },
+              {
+                q: 'Are your prices fixed or do they vary?',
+                a: 'Our prices are flat-rate based on vehicle size: $100 for small cars (sedans/coupes), $125 for 5-seater SUVs and pickups, and $150 for 7-seater SUVs, minivans, and large trucks. No hidden fees. Special requests like extreme stain removal or pet hair extraction may have a small additional charge — we\'ll always confirm pricing upfront.'
+              }
+            ].map((faq, i) => (
+              <motion.div
+                key={i}
+                variants={fadeIn}
+                className="faq-item"
+                style={{
+                  background: openFaqIdx === i ? 'var(--color-bg-secondary)' : 'var(--color-bg-primary)',
+                  border: `1px solid ${openFaqIdx === i ? 'rgba(227, 27, 35, 0.18)' : 'var(--glass-border)'}`,
+                  borderRadius: '14px',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <button
+                  onClick={() => setOpenFaqIdx(openFaqIdx === i ? null : i)}
+                  className="faq-question"
+                  aria-expanded={openFaqIdx === i}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '1rem',
+                    padding: '1.25rem 1.5rem',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                    background: 'transparent',
+                    border: 'none',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'var(--text-base)',
+                    fontWeight: 700,
+                    color: openFaqIdx === i ? 'var(--color-accent-primary)' : 'var(--color-accent-secondary)',
+                    transition: 'color 0.2s ease'
+                  }}
+                >
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1 }}>
+                    <span style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '8px',
+                      background: openFaqIdx === i ? 'rgba(227, 27, 35, 0.1)' : 'var(--color-bg-secondary)',
+                      color: openFaqIdx === i ? 'var(--color-accent-primary)' : 'var(--color-text-muted)',
+                      flexShrink: 0,
+                      transition: 'all 0.2s ease',
+                      fontSize: '0.85rem',
+                      fontWeight: 800
+                    }}>
+                      <HelpCircle size={16} />
+                    </span>
+                    {faq.q}
+                  </span>
+                  <span style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: openFaqIdx === i ? 'var(--color-accent-primary)' : 'var(--color-bg-tertiary)',
+                    color: openFaqIdx === i ? '#ffffff' : 'var(--color-text-muted)',
+                    flexShrink: 0,
+                    transition: 'all 0.25s ease',
+                    transform: openFaqIdx === i ? 'rotate(180deg)' : 'rotate(0deg)'
+                  }}>
+                    <ChevronDown size={16} strokeWidth={2.5} />
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {openFaqIdx === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div style={{
+                        padding: '0 1.5rem 1.25rem 1.5rem',
+                        paddingLeft: 'calc(1.5rem + 32px + 0.75rem)',
+                        fontSize: 'var(--text-sm)',
+                        color: 'var(--color-text-secondary)',
+                        lineHeight: '1.7'
+                      }}>
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* CTA below FAQ */}
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: '1rem' }}>
+              Still have questions? We&apos;re happy to help!
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="tel:5197295856" className="btn btn--primary" style={{ borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Phone size={16} /> CALL US NOW
+              </a>
+              <a href="#contact" className="btn btn--secondary" style={{ border: '1px solid var(--glass-border)', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                GET A FREE QUOTE <ArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact & Free Quote Section */}
       <section id="contact" className="section" style={{ paddingBlock: '4.5rem', position: 'relative' }}>
         <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-16)', alignItems: 'start' }}>
@@ -1349,6 +1526,7 @@ export default function LandingPage() {
                 <li><a href="#gallery" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Gallery</a></li>
                 <li><a href="#reviews" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Reviews</a></li>
                 <li><a href="#pricing" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Pricing</a></li>
+                <li><a href="#faq" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>FAQ</a></li>
                 <li><a href="#contact" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Contact</a></li>
               </ul>
             </div>
