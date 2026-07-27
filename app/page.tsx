@@ -1131,8 +1131,8 @@ export default function LandingPage() {
                 </div>
                 <div style={{ textAlign: 'left' }}>
                   <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, marginBottom: '0.1rem', color: 'var(--color-text-primary)', textAlign: 'left' }}>Email Us</h4>
-                  <a href="mailto:info@ashinedetailing.com" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 'bold', color: 'var(--color-text-primary)', textDecoration: 'none', wordBreak: 'break-all', textAlign: 'left' }}>
-                    info@ashinedetailing.com
+                  <a href="mailto:info@ashineautomobiledetailing.ca" style={{ display: 'block', fontSize: '0.88rem', fontWeight: 'bold', color: 'var(--color-text-primary)', textDecoration: 'none', wordBreak: 'break-all', textAlign: 'left' }}>
+                    info@ashineautomobiledetailing.ca
                   </a>
                 </div>
               </div>
