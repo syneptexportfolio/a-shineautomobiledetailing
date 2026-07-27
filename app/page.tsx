@@ -274,10 +274,15 @@ export default function LandingPage() {
               className="hero-title"
               style={{ fontSize: 'clamp(2rem, 1.6rem + 3vw, 3.8rem)', fontWeight: 900, lineHeight: 1.15, color: 'var(--color-accent-secondary)', letterSpacing: '-0.02em', textTransform: 'none' }}
             >
-              Restore the <span style={{ color: 'var(--color-accent-primary)' }}>Shine</span>.<br />
-              Protect the Finish.<br />
-              Drive with Pride.
+              Mobile Interior Car Detailing – <span style={{ color: 'var(--color-accent-primary)' }}>Kitchener-Waterloo</span>
             </motion.h1>
+
+            <motion.p
+              variants={fadeIn}
+              style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-accent-secondary)', marginTop: '0.25rem', marginBottom: '0.5rem', lineHeight: '1.3' }}
+            >
+              Restore the <span style={{ color: 'var(--color-accent-primary)' }}>Shine</span>. Protect the Finish. Drive with Pride.
+            </motion.p>
 
             <motion.p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
               Experience premium mobile auto detailing brought directly to your doorstep. Specializing strictly in complete interior deep shampooing, steam sanitization, and stain extraction to bring back that spotless showroom feeling.
