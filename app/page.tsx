@@ -416,7 +416,7 @@ export default function LandingPage() {
               { img: '/service-ai-stain.png', icon: '✨', title: 'Seat Stain & Spill Extraction', desc: 'Specialized hot-water extraction and conditioning for accidental food, drink, or pet spills on seats and carpets.', pos: 'center 50%' },
               { img: '/service-ai-odor.png', icon: '💨', title: 'Odor & Air Sanitization', desc: 'Complete cabin deodorization and sanitization using ozone therapy and thermal steam to destroy bacteria, smoke, and mold odors.', pos: 'center 50%' },
               { img: '/service-ai-truck.png', icon: '🚛', title: 'Truck & Commercial Cabs', desc: 'Professional mobile interior detailing for semi-trucks, dump trucks, loaders, and commercial vehicle cabs.', pos: 'center 45%' },
-              { img: '/service-ai-mobile.png', icon: '🏠', title: 'Mobile or Studio Drop-off', desc: 'We bring our full mobile unit directly to your driveway, or you can drop off your vehicle at our home studio.', pos: 'center 50%' }
+              { img: '/service-van.jpg', icon: '🏠', title: 'Mobile or Studio Drop-off', desc: 'We bring our full mobile unit directly to your driveway, or you can drop off your vehicle at our home studio.', pos: 'center 50%' }
             ].map((srv, i) => (
               <motion.div
                 key={i}
