@@ -2511,6 +2511,13 @@ h1, h2, h3, h4, h5, h6 {
   width: 340px;
 }
 
+/* Tablet: 2 columns for pricing grid */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .pricing-grid-desktop {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 .pricing-mobile-carousel {
   display: none;
 }

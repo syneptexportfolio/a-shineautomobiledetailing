@@ -852,12 +852,12 @@ export default function LandingPage() {
               Full Interior Shampooing <span style={{ color: 'var(--color-accent-primary)' }}>& Detailing</span>
             </h2>
             <p className="section-description" style={{ color: 'var(--color-text-secondary)', maxWidth: '650px', margin: '0 auto', fontSize: 'var(--text-base)' }}>
-              Deep cleaning & steam shampooing that includes everything inside your vehicle: seats, carpets, dashboard, vents, console, door jambs & trunk.
+              Deep cleaning & steam shampooing that includes everything inside your vehicle — from compact cars to heavy-duty sleeper trucks.
             </p>
           </div>
 
           {/* Desktop Pricing Grid */}
-          <div className="pricing-grid pricing-grid-desktop" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
+          <div className="pricing-grid pricing-grid-desktop" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', alignItems: 'stretch' }}>
 
             {/* Small Car */}
             <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
@@ -934,6 +934,81 @@ export default function LandingPage() {
               </Link>
             </div>
 
+            {/* Pickup Truck */}
+            <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>PICKUP TRUCK</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Standard Pickup Trucks & Work Trucks.</p>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$125</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                {['Full Cab Seat Shampooing & Stain Removal', 'Floor Mat & Carpet Deep Extraction', 'Dashboard, Console & Cup Holders Detailed', 'Door Panels & Storage Compartments', 'Steam Cleansing & Salt Removal', 'Odor Treatment & Interior Polish'].map((feat, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
+                    <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
+                BOOK FOR $125 →
+              </Link>
+            </div>
+
+            {/* Day Cab Truck */}
+            <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>DAY CAB TRUCK</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Semi-Trucks & Commercial Day Cabs.</p>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$140</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                {['Full Cab Seat Shampooing & Extraction', 'Floor & Pedal Area Deep Clean', 'Dashboard, Gauges & Controls Detailed', 'Door Panels & Storage Pockets', 'Full Steam Cleansing & Sanitization', 'Odor Elimination & Air Freshening'].map((feat, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
+                    <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', marginTop: 'auto' }}>
+                BOOK FOR $140 →
+              </Link>
+            </div>
+
+            {/* Sleeper Bed Truck */}
+            <div className="glass-card" style={{ padding: '2.5rem 2rem', background: 'var(--color-bg-primary)', border: '2px solid var(--color-accent-secondary)', borderRadius: '16px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: 'var(--shadow-md)' }}>
+              <div style={{ position: 'absolute', top: '-13px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent-secondary)', color: 'white', fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.1em', padding: '0.25rem 0.75rem', borderRadius: '4px' }}>
+                PREMIUM
+              </div>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SLEEPER BED TRUCK</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBlock: '0.5rem 1rem', height: '36px' }}>Sleeper Cab Semi-Trucks & Long-Haul Rigs.</p>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$250</span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                {['Full Cab & Sleeper Berth Shampooing', 'Mattress Deep Clean & Sanitization', 'Dashboard, Gauges & All Controls Detailed', 'Floor, Pedals & Storage Compartments', 'Complete Steam Cleansing & Deodorizing', 'Curtains, Panels & Full Cab Detailing'].map((feat, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <Check size={14} style={{ color: 'var(--color-accent-primary)' }} strokeWidth={3} />
+                    <span style={{ fontSize: '0.85rem', color: 'var(--color-text-primary)' }}>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="#contact" className="btn btn--primary btn--full" style={{ borderRadius: '6px', marginTop: 'auto' }}>
+                BOOK FOR $250 →
+              </Link>
+            </div>
+
 
           </div>
 
@@ -942,7 +1017,7 @@ export default function LandingPage() {
 
             {/* Middle Left Arrow */}
             <button
-              onClick={() => setActivePriceIdx(prev => (prev > 0 ? prev - 1 : 2))}
+              onClick={() => setActivePriceIdx(prev => (prev > 0 ? prev - 1 : 5))}
               style={{ position: 'absolute', left: '-6px', top: '52%', transform: 'translateY(-50%)', zIndex: 10, width: '38px', height: '38px', borderRadius: '50%', background: 'var(--color-accent-primary)', color: '#ffffff', border: '2px solid #ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(227, 27, 35, 0.35)', cursor: 'pointer' }}
               aria-label="Previous Package"
             >
@@ -951,7 +1026,7 @@ export default function LandingPage() {
 
             {/* Middle Right Arrow */}
             <button
-              onClick={() => setActivePriceIdx(prev => (prev < 2 ? prev + 1 : 0))}
+              onClick={() => setActivePriceIdx(prev => (prev < 5 ? prev + 1 : 0))}
               style={{ position: 'absolute', right: '-6px', top: '52%', transform: 'translateY(-50%)', zIndex: 10, width: '38px', height: '38px', borderRadius: '50%', background: 'var(--color-accent-primary)', color: '#ffffff', border: '2px solid #ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(227, 27, 35, 0.35)', cursor: 'pointer' }}
               aria-label="Next Package"
             >
@@ -961,10 +1036,10 @@ export default function LandingPage() {
             {/* Indicator Dots Bar */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', marginBottom: '0.75rem' }}>
               <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                PACKAGE {activePriceIdx + 1} OF 3
+                PACKAGE {activePriceIdx + 1} OF 6
               </span>
               <div style={{ display: 'flex', gap: '6px' }}>
-                {[0, 1, 2].map((dotIdx) => (
+                {[0, 1, 2, 3, 4, 5].map((dotIdx) => (
                   <button
                     key={dotIdx}
                     onClick={() => setActivePriceIdx(dotIdx)}
@@ -1054,6 +1129,78 @@ export default function LandingPage() {
                     </div>
                     <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
                       BOOK FOR $150 →
+                    </Link>
+                  </div>
+                )}
+
+                {activePriceIdx === 3 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>PICKUP TRUCK</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>Standard Pickup Trucks & Work Trucks.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$125</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                      {['Full Cab Seat Shampooing & Stain Removal', 'Floor Mat & Carpet Deep Extraction', 'Dashboard, Console & Cup Holders Detailed', 'Door Panels & Storage Compartments', 'Steam Cleansing & Salt Removal', 'Odor Treatment & Interior Polish'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK FOR $125 →
+                    </Link>
+                  </div>
+                )}
+
+                {activePriceIdx === 4 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>DAY CAB TRUCK</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>Semi-Trucks & Commercial Day Cabs.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$140</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                      {['Full Cab Seat Shampooing & Extraction', 'Floor & Pedal Area Deep Clean', 'Dashboard, Gauges & Controls Detailed', 'Door Panels & Storage Pockets', 'Full Steam Cleansing & Sanitization', 'Odor Elimination & Air Freshening'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--secondary btn--full" style={{ border: '1px solid var(--color-accent-primary)', color: 'var(--color-accent-primary)', background: 'transparent', borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK FOR $140 →
+                    </Link>
+                  </div>
+                )}
+
+                {activePriceIdx === 5 && (
+                  <div className="glass-card" style={{ padding: '1.25rem 1.15rem', background: 'var(--color-bg-primary)', border: '2px solid var(--color-accent-secondary)', borderRadius: '14px', display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+                    <div style={{ position: 'absolute', top: '-11px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-accent-secondary)', color: 'white', fontSize: '0.6rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.1em', padding: '0.15rem 0.6rem', borderRadius: '4px' }}>
+                      PREMIUM
+                    </div>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>SLEEPER BED TRUCK</span>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBlock: '0.25rem 0.6rem' }}>Sleeper Cab Semi-Trucks & Long-Haul Rigs.</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.75rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>$250</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>FLAT RATE</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '0.75rem' }}>
+                      <span style={{ fontSize: '0.7rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Includes Everything Inside:</span>
+                      {['Full Cab & Sleeper Berth Shampooing', 'Mattress Deep Clean & Sanitization', 'Dashboard, Gauges & All Controls Detailed', 'Floor, Pedals & Storage Compartments', 'Complete Steam Cleansing & Deodorizing', 'Curtains, Panels & Full Cab Detailing'].map((feat, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <Check size={13} style={{ color: 'var(--color-accent-primary)', flexShrink: 0 }} strokeWidth={3} />
+                          <span style={{ fontSize: '0.75rem', color: 'var(--color-text-primary)', lineHeight: '1.25' }}>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link href="#contact" className="btn btn--primary btn--full" style={{ borderRadius: '6px', paddingBlock: '0.6rem', fontSize: '0.8rem' }}>
+                      BOOK FOR $250 →
                     </Link>
                   </div>
                 )}
