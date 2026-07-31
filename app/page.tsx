@@ -512,7 +512,7 @@ export default function LandingPage() {
                   minWidth: '120px'
                 }}
               >
-                <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>5+</span>
+                <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>7+</span>
                 <span style={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: '0.05em', textTransform: 'uppercase', textAlign: 'center', marginTop: '0.25rem' }}>Years of<br />Experience</span>
               </div>
             </div>
