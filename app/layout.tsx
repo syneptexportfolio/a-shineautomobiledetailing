@@ -7,22 +7,22 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ashineautomobiledetailing.ca'),
+  metadataBase: new URL('https://www.ashineautomobiledetailing.ca'),
   title: 'Mobile Interior Car Detailing Kitchener-Waterloo | A-Shine Auto',
   description: 'Mobile interior detailing in Kitchener-Waterloo. Steam cleaning, salt & stain removal, shampooing — we come to you. 5.0★ rated. Book today.',
   alternates: {
-    canonical: 'https://ashineautomobiledetailing.ca',
+    canonical: 'https://www.ashineautomobiledetailing.ca',
   },
   openGraph: {
     title: 'Mobile Interior Car Detailing Kitchener-Waterloo | A-Shine Auto',
     description: 'Mobile interior detailing in Kitchener-Waterloo. Steam cleaning, salt & stain removal, shampooing — we come to you. 5.0★ rated. Book today.',
-    url: 'https://ashineautomobiledetailing.ca',
+    url: 'https://www.ashineautomobiledetailing.ca',
     siteName: 'A-Shine Auto Mobile Detailing',
     locale: 'en_CA',
     type: 'website',
     images: [
       {
-        url: 'https://ashineautomobiledetailing.ca/porsche-hero.png',
+        url: 'https://www.ashineautomobiledetailing.ca/porsche-hero.png',
         width: 1200,
         height: 630,
         alt: 'A-Shine Auto Mobile Detailing',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mobile Interior Car Detailing Kitchener-Waterloo | A-Shine Auto',
     description: 'Mobile interior detailing in Kitchener-Waterloo. Steam cleaning, salt & stain removal, shampooing — we come to you. 5.0★ rated. Book today.',
-    images: ['https://ashineautomobiledetailing.ca/porsche-hero.png'],
+    images: ['https://www.ashineautomobiledetailing.ca/porsche-hero.png'],
   },
 };
 
@@ -46,10 +46,10 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": ["AutoDetailingService", "LocalBusiness"],
     "name": "A-Shine Auto Mobile Detailing",
-    "url": "https://ashineautomobiledetailing.ca",
+    "url": "https://www.ashineautomobiledetailing.ca",
     "telephone": "+1-519-729-5856",
     "email": "info@ashineautomobiledetailing.ca",
-    "image": "https://ashineautomobiledetailing.ca/porsche-hero.png",
+    "image": "https://www.ashineautomobiledetailing.ca/porsche-hero.png",
     "priceRange": "$100–$250",
     "address": {
       "@type": "PostalAddress",

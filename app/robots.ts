@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'Bingbot', allow: '/' },
       { userAgent: 'anthropic-ai', allow: '/' },
     ],
-    sitemap: 'https://ashineautomobiledetailing.ca/sitemap.xml',
+    sitemap: 'https://www.ashineautomobiledetailing.ca/sitemap.xml',
   };
 }
