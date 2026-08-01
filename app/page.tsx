@@ -285,7 +285,7 @@ export default function LandingPage() {
             </motion.p>
 
             <motion.p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
-              Experience premium mobile auto detailing brought directly to your doorstep. Specializing strictly in complete interior deep shampooing, steam sanitization, and stain extraction to bring back that spotless showroom feeling.
+              A-Shine provides mobile interior car detailing in Kitchener-Waterloo, bringing full-service cleaning directly to your driveway or workplace. We specialize in interior deep shampooing, steam sanitization, and stain extraction — restoring your vehicle's interior to a showroom finish.
             </motion.p>
 
             <motion.div variants={fadeIn} className="hero-cta-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
