@@ -447,7 +447,7 @@ export default function LandingPage() {
                     src={srv.img}
                     alt={srv.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 384px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 362px"
                     style={{ objectFit: 'cover', objectPosition: srv.pos }}
                     className="transition-transform duration-500 hover:scale-105"
                   />
@@ -488,7 +488,7 @@ export default function LandingPage() {
                   src="/service-ai-interior.png"
                   alt="Professional AI generated interior car detailing"
                   fill
-                  sizes="(max-width: 768px) 100vw, 480px"
+                  sizes="(max-width: 768px) 100vw, 384px"
                   className="rounded-2xl shadow-xl"
                   style={{ objectFit: 'cover', borderRadius: '16px' }}
                 />
@@ -791,7 +791,7 @@ export default function LandingPage() {
                       {review.name.split(' ')[0][0]}{review.name.split(' ')[1]?.[0] || ''}
                     </div>
                     <div>
-                      <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h4>
+                      <h3 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h3>
                       <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{review.time}</span>
                     </div>
                   </div>
@@ -832,7 +832,7 @@ export default function LandingPage() {
                       {review.name.split(' ')[0][0]}{review.name.split(' ')[1]?.[0] || ''}
                     </div>
                     <div>
-                      <h4 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h4>
+                      <h3 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h3>
                       <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{review.time}</span>
                     </div>
                   </div>
@@ -1222,7 +1222,7 @@ export default function LandingPage() {
               <div key={i} className="trust-bar-item" style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start', flex: '1 1 180px' }}>
                 <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }}>{pt.icon}</span>
                 <div>
-                  <h5 style={{ fontSize: '0.82rem', fontWeight: 'bold', color: 'var(--color-text-primary)', margin: 0 }}>{pt.title}</h5>
+                  <h3 style={{ fontSize: '0.82rem', fontWeight: 'bold', color: 'var(--color-text-primary)', margin: 0 }}>{pt.title}</h3>
                   <p style={{ fontSize: '0.72rem', color: 'var(--color-text-secondary)', margin: 0, marginTop: '0.1rem', lineHeight: 1.4 }}>{pt.desc}</p>
                 </div>
               </div>
@@ -1499,7 +1499,7 @@ export default function LandingPage() {
             <div className="footer-col footer-col-left">
               <h4>Quick Links</h4>
               <ul>
-                <li><Link href="#" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Home</Link></li>
+                <li><Link href="/" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Home</Link></li>
                 <li><a href="#services" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Services</a></li>
                 <li><a href="#about" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>About Us</a></li>
                 <li><a href="#gallery" style={{ color: '#cbd5e1', fontSize: '0.72rem' }}>Gallery</a></li>
