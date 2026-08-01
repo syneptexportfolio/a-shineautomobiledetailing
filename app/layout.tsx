@@ -43,7 +43,7 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "AutoDetailingService",
+    "@type": ["AutoDetailingService", "LocalBusiness"],
     "name": "A-Shine Auto Mobile Detailing",
     "url": "https://ashineautomobiledetailing.ca",
     "telephone": "+1-519-729-5856",
