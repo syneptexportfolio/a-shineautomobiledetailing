@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -113,6 +114,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${outfit.variable}`}>
         {children}
+        <GoogleAnalytics gaId="G-2S5G4J3R2W" />
       </body>
     </html>
   );
