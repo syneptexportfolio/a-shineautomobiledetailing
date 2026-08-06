@@ -410,68 +410,111 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <motion.div
-            className="services-grid"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
             {[
-              { img: '/service-ai-interior.png', icon: '🧽', title: 'Full Interior Shampooing', desc: 'Deep shampooing and stain extraction for cloth & leather seats, carpets, dashboard, vents, console, door jambs, and trunk.', pos: 'center 45%' },
-              { img: '/service-ai-steam.png', icon: '🧼', title: 'Steam Cleansing & Salt Removal', desc: 'High-temperature steam cleansing that dissolves embedded winter salt, grime, bacteria, and stubborn floor mat stains.', pos: 'center 50%' },
-              { img: '/service-ai-stain.png', icon: '✨', title: 'Seat Stain & Spill Extraction', desc: 'Specialized hot-water extraction and conditioning for accidental food, drink, or pet spills on seats and carpets.', pos: 'center 50%' },
-              { img: '/service-ai-odor.png', icon: '💨', title: 'Odor & Air Sanitization', desc: 'Complete cabin deodorization and sanitization using ozone therapy and thermal steam to destroy bacteria, smoke, and mold odors.', pos: 'center 50%' },
-              { img: '/service-ai-truck.png', icon: '🚛', title: 'Truck & Commercial Cabs', desc: 'Professional mobile interior detailing for semi-trucks, dump trucks, loaders, and commercial vehicle cabs.', pos: 'center 45%' },
-              { img: '/service-van.jpg', icon: '🏠', title: 'Mobile or Studio Drop-off', desc: 'We bring our full mobile unit directly to your driveway, or you can drop off your vehicle at our home studio.', pos: 'center 50%' }
-            ].map((srv, i) => (
+              {
+                title: 'Residential Interior Car & SUV Detailing',
+                intro: 'From sedans to full-size SUVs, we offer complete interior car detailing in Kitchener and Waterloo, including deep shampooing, salt stain removal, and stain extraction for cloth and leather seats.',
+                cards: [
+                  { img: '/service-ai-interior.png', icon: '🧽', title: 'Full Interior Shampooing', desc: 'Deep shampooing and stain extraction for cloth & leather seats, carpets, dashboard, vents, console, door jambs, and trunk.', pos: 'center 45%' },
+                  { img: '/service-ai-steam.png', icon: '🧼', title: 'Steam Cleansing & Salt Removal', desc: 'High-temperature steam cleansing that dissolves embedded winter salt, grime, bacteria, and stubborn floor mat stains.', pos: 'center 50%' },
+                  { img: '/service-ai-stain.png', icon: '✨', title: 'Seat Stain & Spill Extraction', desc: 'Specialized hot-water extraction and conditioning for accidental food, drink, or pet spills on seats and carpets.', pos: 'center 50%' }
+                ]
+              },
+              {
+                title: 'Odor & Air Sanitization',
+                intro: 'Eliminate smoke, pet, and mold odors for good with ozone-based car odor removal in Kitchener-Waterloo — not just masked, fully sanitized.',
+                cards: [
+                  { img: '/service-ai-odor.png', icon: '💨', title: 'Odor & Air Sanitization', desc: 'Complete cabin deodorization and sanitization using ozone therapy and thermal steam to destroy bacteria, smoke, and mold odors.', pos: 'center 50%' }
+                ]
+              },
+              {
+                title: 'Commercial Truck & Fleet Cab Detailing',
+                intro: 'A-Shine provides mobile semi-truck cab detailing and commercial vehicle interior cleaning across Kitchener and Waterloo, including day cabs, sleeper berths, and heavy equipment cabs.',
+                cards: [
+                  { img: '/service-ai-truck.png', icon: '🚛', title: 'Truck & Commercial Cabs', desc: 'Professional mobile interior detailing for semi-trucks, dump trucks, loaders, and commercial vehicle cabs.', pos: 'center 45%' }
+                ]
+              },
+              {
+                title: 'Mobile & Studio Service Options',
+                intro: 'Book mobile detailing at your driveway anywhere in Kitchener-Waterloo, or drop off your vehicle at our studio for the same premium service.',
+                cards: [
+                  { img: '/service-van.jpg', icon: '🏠', title: 'Mobile or Studio Drop-off', desc: 'We bring our full mobile unit directly to your driveway, or you can drop off your vehicle at our home studio.', pos: 'center 50%' }
+                ]
+              }
+            ].map((group, groupIdx) => (
               <motion.div
-                key={i}
-                variants={fadeIn}
-                className="service-card"
-                style={{
-                  background: 'var(--color-bg-primary)',
-                  border: '1px solid var(--glass-border)',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  boxShadow: 'var(--shadow-sm)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  position: 'relative'
-                }}
+                key={groupIdx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={staggerContainer}
+                className="service-group"
               >
-                {/* Image top */}
-                <div className="service-card-img-wrap" style={{ width: '100%', height: '240px', position: 'relative', overflow: 'hidden', background: '#0a0d14' }}>
-                  <Image
-                    src={srv.img}
-                    alt={srv.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 362px"
-                    style={{ objectFit: 'cover', objectPosition: srv.pos }}
-                    className="transition-transform duration-500 hover:scale-105"
-                  />
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h2 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '-0.01em', marginBottom: '0.5rem' }}>
+                    {group.title}
+                  </h2>
+                  <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, maxWidth: '800px' }}>
+                    {group.intro}
+                  </p>
                 </div>
 
-                {/* Content */}
-                <div className="service-card-body" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, gap: '0.75rem' }}>
-                  <h3 className="service-card-title" style={{ fontSize: 'var(--text-lg)', fontWeight: 'bold', color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '-0.01em', margin: 0 }}>
-                    {srv.title}
-                  </h3>
-                  <p className="service-card-desc" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
-                    {srv.desc}
-                  </p>
-                  <Link
-                    href="#contact"
-                    className="flex items-center gap-1.5 service-card-link"
-                    style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', marginTop: 'auto', textDecoration: 'none' }}
-                  >
-                    BOOK THIS SERVICE <ArrowRight size={14} />
-                  </Link>
+                <div
+                  className="services-grid"
+                  style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}
+                >
+                  {group.cards.map((srv, i) => (
+                    <motion.div
+                      key={i}
+                      variants={fadeIn}
+                      className="service-card"
+                      style={{
+                        background: 'var(--color-bg-primary)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        boxShadow: 'var(--shadow-sm)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        position: 'relative',
+                        maxWidth: group.cards.length === 1 ? '400px' : 'none'
+                      }}
+                    >
+                      {/* Image top */}
+                      <div className="service-card-img-wrap" style={{ width: '100%', height: '240px', position: 'relative', overflow: 'hidden', background: '#0a0d14' }}>
+                        <Image
+                          src={srv.img}
+                          alt={srv.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 362px"
+                          style={{ objectFit: 'cover', objectPosition: srv.pos }}
+                          className="transition-transform duration-500 hover:scale-105"
+                        />
+                      </div>
+
+                      {/* Content */}
+                      <div className="service-card-body" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, gap: '0.75rem' }}>
+                        <h3 className="service-card-title" style={{ fontSize: 'var(--text-lg)', fontWeight: 'bold', color: 'var(--color-accent-secondary)', textTransform: 'uppercase', letterSpacing: '-0.01em', margin: 0 }}>
+                          {srv.title}
+                        </h3>
+                        <p className="service-card-desc" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                          {srv.desc}
+                        </p>
+                        <Link
+                          href="#contact"
+                          className="flex items-center gap-1.5 service-card-link"
+                          style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--color-accent-primary)', marginTop: 'auto', textDecoration: 'none' }}
+                        >
+                          BOOK THIS SERVICE <ArrowRight size={14} />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
