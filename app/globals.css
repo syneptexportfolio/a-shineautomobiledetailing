@@ -850,48 +850,6 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-1);
 }
 
-/* Single Service Card Horizontal Desktop Layout */
-@media (min-width: 768px) {
-  .service-card-single {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: stretch !important;
-    min-height: 280px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .service-card-single .service-card-img-wrap {
-    width: 40% !important;
-    min-width: 40% !important;
-    max-width: 40% !important;
-    height: auto !important;
-    min-height: 280px !important;
-    border-radius: 16px 0 0 16px !important;
-  }
-
-  .service-card-single .service-card-body {
-    width: 60% !important;
-    padding: 2.25rem 2.5rem !important;
-    justify-content: center !important;
-    gap: 1rem !important;
-  }
-
-  .service-card-single .service-card-title {
-    font-size: var(--text-xl) !important;
-  }
-
-  .service-card-single .service-card-desc {
-    font-size: var(--text-base) !important;
-    line-height: 1.65 !important;
-  }
-
-  .service-card-single .service-card-link {
-    font-size: 0.9rem !important;
-    margin-top: 0.5rem !important;
-  }
-}
-
 /* ---------- Calendar ---------- */
 .calendar {
   background: var(--glass-bg);
