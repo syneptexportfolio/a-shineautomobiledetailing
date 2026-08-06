@@ -462,13 +462,13 @@ export default function LandingPage() {
 
                 <div
                   className="services-grid"
-                  style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}
+                  style={{ display: 'grid', gridTemplateColumns: group.cards.length === 1 ? '1fr' : 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}
                 >
                   {group.cards.map((srv, i) => (
                     <motion.div
                       key={i}
                       variants={fadeIn}
-                      className="service-card"
+                      className={`service-card ${group.cards.length === 1 ? 'service-card-single' : ''}`}
                       style={{
                         background: 'var(--color-bg-primary)',
                         border: '1px solid var(--glass-border)',
@@ -477,8 +477,7 @@ export default function LandingPage() {
                         boxShadow: 'var(--shadow-sm)',
                         display: 'flex',
                         flexDirection: 'column',
-                        position: 'relative',
-                        maxWidth: group.cards.length === 1 ? '400px' : 'none'
+                        position: 'relative'
                       }}
                     >
                       {/* Image top */}
