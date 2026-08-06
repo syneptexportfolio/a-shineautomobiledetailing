@@ -13,6 +13,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.ashineautomobiledetailing.ca',
   },
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: 'Mobile Interior Car Detailing Kitchener-Waterloo | A-Shine Auto',
     description: 'Mobile interior detailing in Kitchener-Waterloo. Steam cleaning, salt & stain removal, shampooing — we come to you. 5.0★ rated. Book today.',
@@ -42,7 +51,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
+  const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": ["AutoDetailingService", "LocalBusiness"],
     "name": "A-Shine Auto Mobile Detailing",
@@ -50,6 +59,7 @@ export default function RootLayout({
     "telephone": "+1-519-729-5856",
     "email": "info@ashineautomobiledetailing.ca",
     "image": "https://www.ashineautomobiledetailing.ca/porsche-hero.png",
+    "logo": "https://www.ashineautomobiledetailing.ca/logo.png",
     "priceRange": "$100–$250",
     "address": {
       "@type": "PostalAddress",
@@ -104,12 +114,27 @@ export default function RootLayout({
     ]
   };
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "A-Shine Auto Mobile Detailing",
+    "alternateName": "A-Shine Auto",
+    "url": "https://www.ashineautomobiledetailing.ca"
+  };
+
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" href="/icon.png" sizes="192x192" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
       <body className={`${inter.variable} ${outfit.variable}`}>
