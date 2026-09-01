@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Menu, X, Sparkles, Star, Calendar, ChevronLeft, ChevronRight,
-  MapPin, Phone, Mail, Clock, ArrowRight, Shield, Check, MessageSquare
+  Menu, X, Sparkles, Star, ChevronLeft, ChevronRight,
+  MapPin, Phone, Mail, ArrowRight, Shield, Check, MessageSquare
 } from 'lucide-react';
 
 // Before/After interactive slider component
@@ -110,38 +110,39 @@ export default function LandingPage() {
     setQuoteError('');
 
     try {
-      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+      const serviceLabels: Record<string, string> = {
+        'interior-small': 'Small Car Interior ($100)',
+        'interior-suv': 'SUV 5-Seater Interior ($125)',
+        'interior-7seater': '7-Seater / Large Interior ($150)',
+        'commercial': 'Truck & Heavy Equipment',
+        'other': 'Other / Custom Request',
+      };
 
-      if (scriptUrl && !scriptUrl.includes('YOUR_DEPLOYMENT_ID')) {
-        // CORS workaround: send as text/plain so no preflight is triggered.
-        // Google Apps Script reads the raw body via e.postData.contents
-        // and parses it as JSON inside doPost().
-        const payload = JSON.stringify({
-          submittedAt: new Date().toISOString(),
-          name:    quoteForm.name,
-          phone:   quoteForm.phone,
-          email:   quoteForm.email,
-          car:     quoteForm.vehicle,
-          service: quoteForm.service,
-          message: quoteForm.details,
-          pageUrl: window.location.href,
-        });
+      const selectedService = serviceLabels[quoteForm.service] || quoteForm.service || 'Not specified';
 
-        await fetch(scriptUrl, {
-          method:  'POST',
-          mode:    'no-cors',          // opaque response — expected with Apps Script
-          headers: { 'Content-Type': 'text/plain' },
-          body:    payload,
-        });
-      }
+      const message = [
+        'New Quote Request - A-Shine Detailing',
+        '',
+        `Name: ${quoteForm.name.trim()}`,
+        `Phone: ${quoteForm.phone.trim()}`,
+        `Email: ${quoteForm.email.trim()}`,
+        `Vehicle: ${quoteForm.vehicle.trim() || 'Not specified'}`,
+        `Service: ${selectedService}`,
+        `Details: ${quoteForm.details.trim() || 'None'}`,
+      ].join('\n');
 
-      // Optimistic success (no-cors responses are always opaque — cannot read status)
+      const whatsappUrl = `https://wa.me/15197295856?text=${encodeURIComponent(message)}`;
+
+      // Open WhatsApp chat directly
+      window.open(whatsappUrl, '_blank');
+
+      // Success feedback & clear form
       setQuoteSubmitted(true);
       setQuoteForm({ name: '', phone: '', email: '', vehicle: '', service: '', details: '' });
       setTimeout(() => setQuoteSubmitted(false), 6000);
 
     } catch {
-      setQuoteError('Network error. Please check your connection and try again.');
+      setQuoteError('Unable to open WhatsApp. Please contact us directly at (519) 729-5856.');
     } finally {
       setQuoteLoading(false);
     }
@@ -1316,9 +1317,9 @@ export default function LandingPage() {
                     <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(22, 163, 74, 0.1)', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Check size={24} strokeWidth={3} />
                     </div>
-                    <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', margin: 0 }}>Quote Request Sent!</h4>
+                    <h4 style={{ fontSize: '1.1rem', fontWeight: 'bold', margin: 0 }}>Quote Request Prepared!</h4>
                     <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', margin: 0, lineHeight: 1.5 }}>
-                      Thank you! We have received your request and our detailing team will get back to you with a custom quote within 24 hours.
+                      Thank you! Your quote details have been opened in WhatsApp to connect directly with our detailing team.
                     </p>
                   </motion.div>
                 ) : (
