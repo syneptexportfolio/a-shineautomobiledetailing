@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emnapi/core": "^1.11.3",
+    "@emnapi/runtime": "^1.11.3",
     "@next/third-parties": "^16.2.12",
     "framer-motion": "^12.42.2",
     "lucide-react": "^1.25.0",
