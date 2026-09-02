@@ -2511,6 +2511,29 @@ h1, h2, h3, h4, h5, h6 {
   width: 340px;
 }
 
+/* Reviews marquee tracks */
+.reviews-marquee-track-ltr {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee-forward 260s linear infinite;
+}
+
+.reviews-marquee-track-ltr:hover {
+  animation-play-state: paused;
+}
+
+.reviews-marquee-track-rtl {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee-forward 260s linear infinite;
+}
+
+.reviews-marquee-track-rtl:hover {
+  animation-play-state: paused;
+}
+
 /* Tablet: 2 columns for pricing grid */
 @media (min-width: 769px) and (max-width: 1024px) {
   .pricing-grid-desktop {
@@ -2588,7 +2611,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .gallery-marquee-track,
-  .gallery-marquee-track-rtl {
+  .gallery-marquee-track-rtl,
+  .reviews-marquee-track-ltr,
+  .reviews-marquee-track-rtl {
     gap: 0.85rem !important;
   }
 

@@ -8,6 +8,7 @@ import {
   Menu, X, Sparkles, Star, ChevronLeft, ChevronRight,
   MapPin, Phone, Mail, ArrowRight, Shield, Check, MessageSquare
 } from 'lucide-react';
+import { REVIEWS_ROW_1, REVIEWS_ROW_2, CustomerReview } from '@/data/reviews';
 
 // Before/After interactive slider component
 function BeforeAfterSlider({ before, after, label, beforeFilter }: { before: string; after: string; label: string; beforeFilter?: string }) {
@@ -746,7 +747,7 @@ export default function LandingPage() {
       </section>
 
       {/* Reviews Section */}
-      <section id="reviews" className="section" style={{ paddingBlock: '4rem' }}>
+      <section id="reviews" className="section" style={{ paddingBlock: '4rem', overflow: 'hidden' }}>
         <div className="container">
           <div className="section-header" style={{ marginBottom: '2rem' }}>
             <span className="section-eyebrow" style={{ color: 'var(--color-accent-primary)', fontWeight: 'bold', fontSize: 'var(--text-xs)', letterSpacing: '0.15em', display: 'block', marginBottom: '0.5rem' }}>CUSTOMER REVIEWS</span>
@@ -754,28 +755,34 @@ export default function LandingPage() {
               See What Our <span style={{ color: 'var(--color-accent-primary)' }}>Clients Say</span>
             </h2>
           </div>
+        </div>
 
-          <div className="marquee-container" style={{ paddingBlock: '1rem', marginTop: '1rem' }}>
-            <div className="marquee-track">
-              {/* Set 1 */}
-              {[
-                { text: 'I recently got interior detailing done here and I\'m extremely satisfied with the results. They did a deep and thorough cleaning—seats, carpets, dashboard, and even the smallest corners were spotless. My car looks and smells like new again.', name: 'Ajay Navadiya', time: '3 months ago' },
-                { text: 'Spotless Cleaning by Kulwant. He is amazing and very professional in what he does. No complaints.', name: 'Palash Mardhekar', time: '2 months ago' },
-                { text: 'I had an excellent experience and couldn\'t be happier with the results. From the moment I arrived, he was friendly, welcoming, and genuinely passionate about what he does. He took the time to explain the entire detailing process.', name: 'Saiel Tivatane', time: '2 weeks ago' },
-                { text: 'Great experience. I got my model Y detailing done. I recommend dropping off vehicle to his home so even if he misses a spot you can ask him to clean when you\'re picking up your vehicle.', name: 'Gaurang Patel', time: 'a month ago' },
-                { text: 'I recently had my vehicle detailed for the first time, and it was an excellent experience from start to finish. Everything was clearly explained beforehand, so I knew exactly what to expect, and he was very professional, friendly, and thorough.', name: 'Katalina Avila', time: '2 weeks ago' },
-                { text: 'I had an excellent experience with this auto detailer. The attention to detail was outstanding — my car looks brand new inside and out. Every surface was thoroughly cleaned, polished, and restored to a high standard.', name: 'Peter Godspower', time: '3 months ago' },
-                { text: 'Very great experience. My car was thoroughly cleaned and shining like new. Excellent communication. Did engine bay detailing as well and its amazing. I brought new car mats and he installed it for free! Very satisfied with service.', name: 'Apoorv B. Chavda', time: '3 months ago' },
-                { text: 'Phenomenal Experience with A-Shine Auto Mobile Detailing! I don\'t normally write reviews, but the incredible service I received here completely earned it.', name: 'Harjeet Singh', time: 'a month ago' },
-                { text: 'Absolutely amazing service! My Toyota Sienna looks brand new inside and out. The attention to detail was incredible — every surface was spotless, the carpets looked refreshed, and they even got rid of all the little crumbs and marks.', name: 'Aya-xox', time: 'a month ago' },
-                { text: 'Got my suv cleaned fully inside for the first time from A-Shine and very satisfied with the steam cleansing, shampooing and polishing. Very pleased to see the winter salt completely removed.', name: 'Nha TamThu', time: '2 weeks ago' },
-                { text: 'I\'ve been coming to A Shine Automobile Detailing regularly, and Kulwant ji always does an amazing job. I recently had the inside of my car detailed again, and it came back looking spotless and fresh. The attention to detail is excellent.', name: 'Pankaj Bains', time: '2 months ago' },
-                { text: 'Called last-minute and still received quick and efficient service. For a very reasonable price my car received an amazing cleaning job and looks brand new again. I will be back and definitely would recommend this business. Thank you again!', name: 'Jessica Chan', time: 'a month ago' },
-                { text: 'I highly recommend this place for car detailing. Yesterday night food was spilled at the back seat and in trunk of my brand new Elantra, I called him in the morning and inspite of busy schedule he gave me service. Amazing!', name: 'Shanil Gosavi', time: 'a year ago' },
-                { text: 'We had the pleasure of A-Shine out to detail our pick up truck. Communication was quick and it was easy to book. We can\'t believe how clean it came out. There was job site dirt, salt stains, dog hair, kids grime - completely cleaned it all. Absolutely recommend.', name: 'Andrea Bradley', time: '2 weeks ago' },
-                { text: 'Kulwant is very professional! He always goes the extra mile to make his work more appealing. Very seasonal price for superior work. I wish him all the best!', name: 'Gration Fernando', time: '3 weeks ago' },
-              ].map((review, i) => (
-                <div key={`set1-${i}`} className="glass-card review-card" style={{ padding: '1.75rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', flexShrink: 0 }}>
+        {/* Row 1 — Left to Right */}
+        <div className="marquee-container" style={{ paddingBlock: '0.75rem', marginTop: '0.5rem' }}>
+          <div className="reviews-marquee-track-ltr">
+            {/* Set 1 */}
+            {REVIEWS_ROW_1.map((review, i) => {
+              const parts = review.name.trim().split(/\s+/);
+              const initials = parts.length > 1 
+                ? `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+                : (parts[0]?.[0] || '★').toUpperCase();
+
+              return (
+                <div
+                  key={`r1-s1-${i}`}
+                  className="glass-card review-card"
+                  style={{
+                    padding: '1.75rem 1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                    background: 'var(--color-bg-primary)',
+                    border: '1px solid var(--glass-border)',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+                    flexShrink: 0
+                  }}
+                >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
                       {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
@@ -789,7 +796,7 @@ export default function LandingPage() {
                   </p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem' }}>
                     <div style={{ width: '38px', height: '38px', minWidth: '38px', minHeight: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(227, 27, 35, 0.12), rgba(227, 27, 35, 0.04))', border: '1px solid rgba(227, 27, 35, 0.2)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem', flexShrink: 0 }}>
-                      {review.name.split(' ')[0][0]}{review.name.split(' ')[1]?.[0] || ''}
+                      {initials}
                     </div>
                     <div>
                       <h3 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h3>
@@ -797,26 +804,31 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-              ))}
-              {/* Set 2 (Duplicate for loop continuity) */}
-              {[
-                { text: 'I recently got interior detailing done here and I\'m extremely satisfied with the results. They did a deep and thorough cleaning—seats, carpets, dashboard, and even the smallest corners were spotless. My car looks and smells like new again.', name: 'Ajay Navadiya', time: '3 months ago' },
-                { text: 'Spotless Cleaning by Kulwant. He is amazing and very professional in what he does. No complaints.', name: 'Palash Mardhekar', time: '2 months ago' },
-                { text: 'I had an excellent experience and couldn\'t be happier with the results. From the moment I arrived, he was friendly, welcoming, and genuinely passionate about what he does. He took the time to explain the entire detailing process.', name: 'Saiel Tivatane', time: '2 weeks ago' },
-                { text: 'Great experience. I got my model Y detailing done. I recommend dropping off vehicle to his home so even if he misses a spot you can ask him to clean when you\'re picking up your vehicle.', name: 'Gaurang Patel', time: 'a month ago' },
-                { text: 'I recently had my vehicle detailed for the first time, and it was an excellent experience from start to finish. Everything was clearly explained beforehand, so I knew exactly what to expect, and he was very professional, friendly, and thorough.', name: 'Katalina Avila', time: '2 weeks ago' },
-                { text: 'I had an excellent experience with this auto detailer. The attention to detail was outstanding — my car looks brand new inside and out. Every surface was thoroughly cleaned, polished, and restored to a high standard.', name: 'Peter Godspower', time: '3 months ago' },
-                { text: 'Very great experience. My car was thoroughly cleaned and shining like new. Excellent communication. Did engine bay detailing as well and its amazing. I brought new car mats and he installed it for free! Very satisfied with service.', name: 'Apoorv B. Chavda', time: '3 months ago' },
-                { text: 'Phenomenal Experience with A-Shine Auto Mobile Detailing! I don\'t normally write reviews, but the incredible service I received here completely earned it.', name: 'Harjeet Singh', time: 'a month ago' },
-                { text: 'Absolutely amazing service! My Toyota Sienna looks brand new inside and out. The attention to detail was incredible — every surface was spotless, the carpets looked refreshed, and they even got rid of all the little crumbs and marks.', name: 'Aya-xox', time: 'a month ago' },
-                { text: 'Got my suv cleaned fully inside for the first time from A-Shine and very satisfied with the steam cleansing, shampooing and polishing. Very pleased to see the winter salt completely removed.', name: 'Nha TamThu', time: '2 weeks ago' },
-                { text: 'I\'ve been coming to A Shine Automobile Detailing regularly, and Kulwant ji always does an amazing job. I recently had the inside of my car detailed again, and it came back looking spotless and fresh. The attention to detail is excellent.', name: 'Pankaj Bains', time: '2 months ago' },
-                { text: 'Called last-minute and still received quick and efficient service. For a very reasonable price my car received an amazing cleaning job and looks brand new again. I will be back and definitely would recommend this business. Thank you again!', name: 'Jessica Chan', time: 'a month ago' },
-                { text: 'I highly recommend this place for car detailing. Yesterday night food was spilled at the back seat and in trunk of my brand new Elantra, I called him in the morning and inspite of busy schedule he gave me service. Amazing!', name: 'Shanil Gosavi', time: 'a year ago' },
-                { text: 'We had the pleasure of A-Shine out to detail our pick up truck. Communication was quick and it was easy to book. We can\'t believe how clean it came out. There was job site dirt, salt stains, dog hair, kids grime - completely cleaned it all. Absolutely recommend.', name: 'Andrea Bradley', time: '2 weeks ago' },
-                { text: 'Kulwant is very professional! He always goes the extra mile to make his work more appealing. Very seasonal price for superior work. I wish him all the best!', name: 'Gration Fernando', time: '3 weeks ago' },
-              ].map((review, i) => (
-                <div key={`set2-${i}`} className="glass-card review-card" style={{ padding: '1.75rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--color-bg-primary)', border: '1px solid var(--glass-border)', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', flexShrink: 0 }}>
+              );
+            })}
+            {/* Set 2 (Duplicate for loop continuity) */}
+            {REVIEWS_ROW_1.map((review, i) => {
+              const parts = review.name.trim().split(/\s+/);
+              const initials = parts.length > 1 
+                ? `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+                : (parts[0]?.[0] || '★').toUpperCase();
+
+              return (
+                <div
+                  key={`r1-s2-${i}`}
+                  className="glass-card review-card"
+                  style={{
+                    padding: '1.75rem 1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                    background: 'var(--color-bg-primary)',
+                    border: '1px solid var(--glass-border)',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+                    flexShrink: 0
+                  }}
+                >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
                       {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
@@ -830,7 +842,7 @@ export default function LandingPage() {
                   </p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem' }}>
                     <div style={{ width: '38px', height: '38px', minWidth: '38px', minHeight: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(227, 27, 35, 0.12), rgba(227, 27, 35, 0.04))', border: '1px solid rgba(227, 27, 35, 0.2)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem', flexShrink: 0 }}>
-                      {review.name.split(' ')[0][0]}{review.name.split(' ')[1]?.[0] || ''}
+                      {initials}
                     </div>
                     <div>
                       <h3 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h3>
@@ -838,8 +850,106 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Row 2 — Matched with Row 1 */}
+        <div className="marquee-container" style={{ paddingBlock: '0.75rem', marginTop: '1rem' }}>
+          <div className="reviews-marquee-track-ltr">
+            {/* Set 1 */}
+            {REVIEWS_ROW_2.map((review, i) => {
+              const parts = review.name.trim().split(/\s+/);
+              const initials = parts.length > 1 
+                ? `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+                : (parts[0]?.[0] || '★').toUpperCase();
+
+              return (
+                <div
+                  key={`r2-s1-${i}`}
+                  className="glass-card review-card"
+                  style={{
+                    padding: '1.75rem 1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                    background: 'var(--color-bg-primary)',
+                    border: '1px solid var(--glass-border)',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+                    flexShrink: 0
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
+                      {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
+                    </div>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#16a34a', background: 'rgba(22, 163, 74, 0.08)', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(22, 163, 74, 0.2)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Google Review
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem' }}>
+                    <div style={{ width: '38px', height: '38px', minWidth: '38px', minHeight: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(227, 27, 35, 0.12), rgba(227, 27, 35, 0.04))', border: '1px solid rgba(227, 27, 35, 0.2)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem', flexShrink: 0 }}>
+                      {initials}
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h3>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{review.time}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            {/* Set 2 (Duplicate for loop continuity) */}
+            {REVIEWS_ROW_2.map((review, i) => {
+              const parts = review.name.trim().split(/\s+/);
+              const initials = parts.length > 1 
+                ? `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+                : (parts[0]?.[0] || '★').toUpperCase();
+
+              return (
+                <div
+                  key={`r2-s2-${i}`}
+                  className="glass-card review-card"
+                  style={{
+                    padding: '1.75rem 1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                    background: 'var(--color-bg-primary)',
+                    border: '1px solid var(--glass-border)',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+                    flexShrink: 0
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', color: 'var(--color-accent-primary)', gap: '2px' }}>
+                      {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
+                    </div>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#16a34a', background: 'rgba(22, 163, 74, 0.08)', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(22, 163, 74, 0.2)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Google Review
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: 'auto', borderTop: '1px solid var(--glass-border)', paddingTop: '0.85rem' }}>
+                    <div style={{ width: '38px', height: '38px', minWidth: '38px', minHeight: '38px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(227, 27, 35, 0.12), rgba(227, 27, 35, 0.04))', border: '1px solid rgba(227, 27, 35, 0.2)', color: 'var(--color-accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '0.85rem', flexShrink: 0 }}>
+                      {initials}
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: '0.85rem', fontWeight: 'bold', margin: 0, color: 'var(--color-text-primary)' }}>{review.name}</h3>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)' }}>{review.time}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
